@@ -15,15 +15,21 @@ const Contact = () => {
                     justify="center"
                     alignItems="center"
                     style={{height:"100%"}}>
-                        <Grid item style={{margin:"60px"}}>
-                            <div className="contact_paper1" style={{textAlign: "center"}}><MarkunreadIcon style={{ fontSize: 100, color: "white" }}/></div>
+                        <Grid item style={{margin: 50}}>
+                            <div className="contact_paper1"><MarkunreadIcon style={{ fontSize: 50, color: "white" }}/></div>
                             <div className="contact_font">gmlwjd2116@naver.com</div>
                         </Grid>
-                        <Grid item style={{margin:"60px"}}>
-                            <div className="contact_paper1" style={{textAlign: "center"}}><GitHubIcon style={{ fontSize: 100, color: "white" }}/></div>
+                        <Grid item style={{margin: 50}}>
+                            <div className="contact_paper1"><a href="https://github.com/Pheejung"><GitHubIcon style={{ fontSize: 50, color: "white" }}/></a></div>
                             <div className="contact_font">https://github.com/Pheejung</div>
                         </Grid>
                 </Grid>
+                <div className="contact_font1">
+                    메일을 보내주시면 최대한 빠르게 답장 보내드리겠습니다.
+                </div>
+                <div className="contact_font1">
+                    감사합니다.
+                </div>
         </div>
     );
 };

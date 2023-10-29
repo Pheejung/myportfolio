@@ -1,6 +1,6 @@
 .header {
     width: 100%;
-    height: 100px;
+    height: 80px;
     text-align: center;
     box-shadow: 0 1px 10px rgba(82, 81, 81, 0.8);
     position: fixed;
@@ -9,7 +9,7 @@
 
 
 .footer {
-    height: 100px;
+    height: 80px;
     box-shadow: 0 1px 10px rgba(82, 81, 81, 0.8);
     background-color: white;
 }
@@ -18,18 +18,55 @@
     display: inline-block;
     color: black;
     font-size: 20px;
-    line-height: 100px;
+    line-height: 80px;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .menu-item:hover {
-    background-color: rgb(241, 227, 255);
+    color: rgb(187, 125, 250);
 }
 
 .menu-item:active, .menu-item.active {
-    background-color: rgb(210, 170, 250);
+    /* background-color: rgb(210, 170, 250); */
+    color: rgb(141, 32, 250);
+}
+
+.footer_font {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 80px;
+    color: rgb(179, 179, 179);
+}
+
+@media (max-width: 900px) {
+    .menu-item {
+        display: inline-block;
+        color: black;
+        font-size: 20px;
+        line-height: 80px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+@media (max-width: 540px) {
+    .menu-item {
+        display: inline-block;
+        color: black;
+        font-size: 15px;
+        line-height: 80px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 }
