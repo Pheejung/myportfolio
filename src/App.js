@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Skill from "./pages/Skill";
 import Project from "./pages/Project";
 import Contact from "./pages/Contact";
+import Career from './pages/Career';
 
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
      <Header />
      <Main />
      <About />
-     <Skill />
+     <Career />
      <Project />
+     <Skill />
      <Contact />
      <Footer />
    </div>

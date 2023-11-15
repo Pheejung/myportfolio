@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import "./about.css";
 import Grid from '@material-ui/core/Grid';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
@@ -8,20 +8,65 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import TodayIcon from '@material-ui/icons/Today';
 
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const About = () => {
+    const headerRef = useRef(null);
+    const headerRef1 = useRef(null);
+    const headerRef2 = useRef(null);
+
+    useEffect(() => {
+        gsap.from(headerRef.current, {
+          autoAlpha: 0, 
+          ease: 'none',
+          x: 100,
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top center+=100",
+            end: "top",
+          }
+        });
     
+        gsap.from(headerRef1.current, {
+            autoAlpha: 0, 
+            ease: 'none',
+            x: -100,
+            scrollTrigger: {
+              trigger: headerRef1.current,
+              start: "top center+=150",
+              end: "top",
+            }
+          });
+    
+          gsap.from(headerRef2.current, {
+            autoAlpha: 0, 
+            ease: 'none',
+            x: 100,
+            scrollTrigger: {
+              trigger: headerRef2.current,
+              start: "top center+=280",
+              end: "top",
+            }
+          });
+    
+      }, []);
 
     return (
-        <div id="about" className="about">
-            <div>
+        <section id="about" className="about">
             <div className="about_title">ABOUT</div>
-            <div className="about_title1">WHO</div>
-            <div className="about_font">1998.05.13 (23세)</div>
-            <div className="about_font3">박희정</div>
-            <div className="about_font1">"빠르게 변하는 트렌드를 센스있게 알아채고, 새로움에 있어서 두려워하지 않는 개발자입니다."</div>
-            <div className="about_font1">"의무적으로만 하는 개발자가 아닌 즐길 수 있는 개발자가 되도록 하겠습니다."</div>
+            <section ref={headerRef}>
+                <div className="about_title1">WHO</div>
+                <div className="about_font">1998.05.13 (23세)</div>
+                <div className="about_font3">박희정</div>
+                <div className="about_font1">"빠르게 변하는 트렌드를 센스있게 알아채고, 새로움에 있어서 두려워하지 않는 개발자입니다."</div>
+                <div className="about_font1">"의무적으로만 하는 개발자가 아닌 즐길 수 있는 개발자가 되도록 하겠습니다."</div>
+            </section>
             <Grid
                 container
+                ref={headerRef1}
                 justify="center"
                 alignItems="center"
                 style={{height:"100%"}}>
@@ -33,9 +78,9 @@ const About = () => {
                     {/* <div className="about_font1_2">처음 간단한 프로젝트를 하면서 보고 치는 것이 아닌 내가 직접 구현하고 해결하는 것이 많이 어려웠습니다.</div> */}
                 </Grid>
             </Grid>
-            
             <Grid
                 container
+                ref={headerRef2}
                 justify="center"
                 alignItems="center"
                 style={{height:"100%"}}>
@@ -55,19 +100,7 @@ const About = () => {
                     <div className="about_font5">작은일이라도 성실하게</div>                
                 </Grid>
             </Grid>
-    
-            <div className="about_title1_1">EDUCATION</div>
-            <div className="about_font4"><AccountBalanceIcon viewBox='0 0 30 10' style={{marginRight: 10, fontSize: 30}}/>대림대학교 모바일인터넷과(3년제)</div>
-            <div className="about_font4"><TodayIcon viewBox='0 0 30 10' style={{marginRight: 10, fontSize: 30}}/>2017.03 ~ 2021.02</div>
-            {/* <hr width="50%" style={{opacity:0.5}}/>
-            <div className="about_font4"><AccountBalanceIcon viewBox='0 0 30 10' style={{marginRight: 10, fontSize: 30}}/>KG-ITBank</div>
-            <div className="about_font4"><TodayIcon viewBox='0 0 30 10' style={{marginRight: 10, fontSize: 30}}/>2019.09 ~ 2020.02</div>
-            <hr width="50%" style={{opacity:0.5}}/>
-            <div className="about_font4"><AccountBalanceIcon viewBox='0 0 30 10' style={{marginRight: 10, fontSize: 30}}/>남부여성발전센터</div>
-            <div className="about_font4_1"><TodayIcon viewBox='0 0 30 10' style={{marginRight: 10, fontSize: 30}}/>2020.06 ~ 2020.10</div>                      */}
-            </div>
-            
-        </div>
+        </section>
     );
 };
 

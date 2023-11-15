@@ -2,11 +2,9 @@
     padding-top: 100px;
     width: 100%;
     height: 100%;
-    background-color: rgb(247, 234, 162);
+    /* background-color: rgb(247, 234, 162); */
     padding-bottom: 100px;
 }
-
-
 
 .project_title {
     padding-top: 20px;
@@ -38,22 +36,22 @@
 }
 
 .project_font1 {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 800;
 }
 
 .project_font1_1 {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 800;
     margin-top: 30px;
     padding-top: 50px;
 }
 
 .project_font2 {
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 5px;
     margin-bottom: 30px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .project_font3 {
@@ -78,4 +76,31 @@
     border-radius: 0.25rem;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+
+@media (max-width: 900px) {
+    .project_font {
+        font-size: 25px;
+    }
+
+    .project_font1 {
+        font-size: 23px;
+    }
+
+    .project_font1_1 {
+        font-size: 21px;
+    }
+
+    .project_font2 {
+        font-size: 14px;
+    }
+
+    .project_font3 {
+        font-size: 14px;
+    }
+
+    .project_font4 a:link {
+        font-size: 16px;
+    }
 }

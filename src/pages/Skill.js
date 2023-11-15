@@ -1,18 +1,129 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import "./skill.css";
 import Grid from '@material-ui/core/Grid';
+import CheckCircleOutlineSharpIcon from '@material-ui/icons//CheckCircleOutlineSharp';
 
-
-
-
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const Skill = () => {
+    const headerRef = useRef(null);
+    const headerRef1 = useRef(null);
+    const headerRef2 = useRef(null);
+    const headerRef3 = useRef(null);
+    const headerRef4 = useRef(null);
+
+useEffect(() => {
+    gsap.from(headerRef.current, {
+      autoAlpha: 0, 
+      ease: 'none',
+      x: 100,
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top center+=100",
+        end: "top",
+      }
+    });
+
+    gsap.from(headerRef1.current, {
+        autoAlpha: 0, 
+        ease: 'none',
+        x: 100,
+        scrollTrigger: {
+          trigger: headerRef1.current,
+          start: "top center+=100",
+          end: "top",
+        }
+      });
+
+      gsap.from(headerRef2.current, {
+        autoAlpha: 0, 
+        ease: 'none',
+        x: 100,
+        scrollTrigger: {
+          trigger: headerRef2.current,
+          start: "top center+=100",
+          end: "top",
+        }
+      });
+
+      gsap.from(headerRef3.current, {
+        autoAlpha: 0, 
+        ease: 'none',
+        x: -100,
+        scrollTrigger: {
+          trigger: headerRef3.current,
+          start: "top center+=100",
+          end: "top",
+        }
+      });
+  
+      gsap.from(headerRef4.current, {
+          autoAlpha: 0, 
+          ease: 'none',
+          x: -100,
+          scrollTrigger: {
+            trigger: headerRef4.current,
+            start: "top center+=100",
+            end: "top",
+          }
+        });
+
+  }, []);
 
     return (
-        <div id="skill" className="skill">
-            <div>
-            <div className="skill_title" >SKILLS</div>
+        <section id="skill" className="skill">
+            <section>
+                <div className="skill_title" >SKILLS</div>
                 <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
+                    style={{height:"100%"}}
+                >
+                    <Grid item sm={4} className="skill-grid" ref={headerRef}>
+                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
+                        <div><h3 className='skill-subtitle'>FrontEnd</h3></div>
+                        <div className='skill-font'>HTML5</div>
+                        <div className='skill-font'>CSS</div>
+                        <div className='skill-font'>JavaScript</div>
+                        <div className='skill-font'>REACT</div>
+                        <div className='skill-font'>Angular</div>
+                    </Grid>
+                    <Grid item sm={4} className="skill-grid" ref={headerRef1}>
+                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
+                        <div><h3 className='skill-subtitle'>BackEnd</h3></div>
+                        <div className='skill-font'>PHP</div>
+                        <div className='skill-font'>JAVA</div>
+                        <div className='skill-font'>Django</div>
+                    </Grid>
+                    <Grid item sm={4} className="skill-grid" ref={headerRef2}>
+                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
+                        <div><h3 className='skill-subtitle'>DB</h3></div>
+                        <div className='skill-font'>MariaDB</div>
+                        <div className='skill-font'>MySQL</div>
+                        <div className='skill-font'>mongoDB</div>
+                    </Grid>
+                    <Grid item sm={4} className="skill-grid" ref={headerRef3}>
+                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
+                        <div><h3 className='skill-subtitle'>TOOL</h3></div>
+                        <div className='skill-font'>Visual Studio Code</div>
+                        <div className='skill-font'>Eclipse</div>
+                        <div className='skill-font'>Android studio</div>
+                        <div className='skill-font'>Bitbucket</div>
+                        <div className='skill-font'>Github</div>
+                    </Grid>
+                    <Grid item sm={4} className="skill-grid" ref={headerRef4}>
+                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
+                        <div><h3 className='skill-subtitle'>Cloud</h3></div>
+                        <div className='skill-font'>Azure</div>
+                        <div className='skill-font'>Ubuntu</div>
+                    </Grid>
+                    <Grid item sm={4} className="skill-grid">
+                    </Grid>
+                </Grid>
+                {/* <Grid
                     container
                     justify="center"
                     style={{height:"100%"}}>
@@ -29,7 +140,7 @@ const Skill = () => {
                             <img src="https://blog.kakaocdn.net/dn/blbt0s/btqwhKTXnVy/VKF9VUPwpTlWMM5zqwDP81/img.png" width="80px" height="80px" style={{margin: 30}}/>
                         </Grid>
                         <Grid item style={{margin:"auto"}}>
-                            <img src="https://blog.telexarsoftware.com/wp-content/uploads/2019/11/logo-redux.png" width="100px" height="100px" style={{margin: 30}}/>
+                            <img src="https://i.ibb.co/LzDCDPg/redux.png" width="155px" height="100px" style={{margin: 30}}/>
                         </Grid>
                         <Grid item style={{margin:"auto"}}>
                             <img src="https://post-phinf.pstatic.net/MjAxNzAzMjhfMjYw/MDAxNDkwNjY1NDkxNTkw.X94ztffwPOCDs90nzw1_p9TOTqMuyEKgVw8n8baQb9og.IhyZEkUI_rXZHNQnzFjj3xeUE0sKTnOQQ7dHqdOPdqIg.PNG/Java.png?type=w1200" width="100px" height="100px" style={{margin: 30}}/>
@@ -52,9 +163,9 @@ const Skill = () => {
                         <Grid item style={{margin:"auto"}}>
                             <img src="https://www.logo.wine/a/logo/Microsoft_Azure/Microsoft_Azure-Logo.wine.svg" width="150px" height="100px" style={{margin: 30}}/>
                         </Grid>
-                </Grid>
-            </div>
-        </div>
+                </Grid> */}
+            </section>
+        </section>
     );
 };
 

@@ -25,7 +25,7 @@ const Contact = () => {
                         </Grid>
                 </Grid>
                 <div className="contact_font1">
-                    메일을 보내주시면 최대한 빠르게 답장 보내드리겠습니다.
+                    끝까지 봐주셔서 감사합니다.
                 </div>
                 <div className="contact_font1">
                     감사합니다.

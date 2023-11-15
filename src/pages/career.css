@@ -1,0 +1,258 @@
+.career {
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgb(202, 248, 174); */
+    padding-bottom: 100px;
+    
+}
+
+.career .redbtn {
+    color: rgb(250, 44, 123);;
+    background: transparent;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid rgb(250, 44, 123);
+    outline: 0;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.career .bluebtn {
+    color: rgb(45, 125, 245);;
+    background: transparent;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid rgb(45, 125, 245);
+    outline: 0;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.career .greenbtn {
+    color: rgb(7 179 59);
+    background: transparent;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid rgb(7 179 59);
+    outline: 0;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.cb {
+    clear: both;
+}
+
+.career_wl {
+    width: calc(40% - 100px);
+    float: left;
+    margin-left: 150px;
+}
+
+.career_wr {
+    width: calc(60% - 100px);
+    float: right;
+}
+
+.career_title {
+    padding-top: 20px;
+    margin-bottom: 50px;
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+    color: rgb(241, 102, 114);
+}
+
+.resume-item h3 {
+    font-size: 20px;
+    padding: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.subtitle {
+    margin-left: 150px;
+    font-size: 20px;
+}
+
+.career_wl h2 {
+    font-size: 27px;
+    margin-bottom: 0px;
+}
+
+.career_wl h3 {
+    font-size: 23px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.career_wl h4 {
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.career_wr h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.career_wr h4 {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.career_wr h6 {
+    font-size: 15px;
+    background: #e4edf9;
+    padding: 5px 15px;
+    display: inline-block;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+.table {
+    border-collapse: collapse;
+    border-top: 3px solid #f16772;
+    margin-left: auto;
+    margin-right: auto;
+  }  
+  .table th {
+    color: #f16772;
+    background: #fffafc;
+    text-align: center;
+  }
+  .table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  .table th:first-child, .table td:first-child {
+    border-left: 0;
+  }
+  .table th:last-child, .table td:last-child {
+    border-right: 0;
+  }
+  .table tr td:first-child{
+    text-align: center;
+  }
+
+@media (max-width: 900px) {
+    .subtitle {
+        margin-left: 50px;
+        font-size: 20px;
+    }
+
+    .career_wl {
+        width: 296px;
+        margin-left: 50px;
+        float: inherit;
+    }
+    
+    .career_wr {
+        width: 296px;
+        margin-left: 50px;
+        float: inherit;
+    }
+
+    .career_title {
+        padding-top: 20px;
+        margin-bottom: 30px;
+        font-size: 50px;
+        font-weight: 700;
+        text-align: center;
+        color: rgb(93, 161, 4);
+
+    }
+
+    .career_wl h2 {
+        font-size: 25px;
+        margin-bottom: 0px;
+    }
+
+    .career_wl h3 {
+        font-size: 21px;
+        margin-bottom: 5px;
+        margin-top: 0px;
+    }
+
+    .career_wr h3 {
+        font-size: 19px;
+        margin-bottom: 5px;
+        margin-top: 0px;
+    }
+
+    .career_wr h4 {
+        font-size: 14px;
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .career_wr h6 {
+        font-size: 14px;
+        background: #e4edf9;
+        padding: 5px 15px;
+        display: inline-block;
+        font-weight: 600;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+
+    .table {
+        border-collapse: collapse;
+        border-top: 3px solid #f16772;
+        margin-left: auto;
+        margin-right: auto;
+    }  
+    .table th {
+        color: #f16772;
+        background: #fffafc;
+        text-align: center;
+        font-size: 16px;
+    }
+    .table th, .table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+    }
+    .table th:first-child, .table td:first-child {
+        border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+        border-right: 0;
+    }
+    .table tr td:first-child{
+        text-align: center;
+    }
+}
+
+p {
+    margin-top: 0px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.line {
+    border-bottom: 0.5px solid #000;
+    margin: 30px 40px 0px;
+}
+
+.modal-body li {
+    max-width: 100%;
+    width: 100%;
+    white-space: pre-wrap;
+    word-break: break-word;
+    caret-color: rgb(55, 53, 47);
+    padding: 3px 2px;
+    text-align: left;
+    font-weight: 500;
+}

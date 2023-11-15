@@ -1,10 +1,64 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import "./project.css";
 import Grid from '@material-ui/core/Grid';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const Project = () => {
+  const headerRef = useRef(null);
+  const headerRef1 = useRef(null);
+  const headerRef2 = useRef(null);
+  const headerRef3 = useRef(null);
+
+  useEffect(() => {
+    gsap.from(headerRef.current, {
+      autoAlpha: 0, 
+      ease: 'none',
+      y: 100,
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top center+=200",
+        end: "top",
+      }
+    });
+
+    gsap.from(headerRef1.current, {
+        autoAlpha: 0, 
+        ease: 'none',
+        y: 100,
+        scrollTrigger: {
+          trigger: headerRef1.current,
+          start: "top center+=350",
+          end: "top",
+        }
+      });
+
+      gsap.from(headerRef2.current, {
+        autoAlpha: 0, 
+        ease: 'none',
+        y: 100,
+        scrollTrigger: {
+          trigger: headerRef2.current,
+          start: "top center+=300",
+          end: "top",
+        }
+      });
+
+      gsap.from(headerRef3.current, {
+        autoAlpha: 0, 
+        ease: 'none',
+        y: 100,
+        scrollTrigger: {
+          trigger: headerRef3.current,
+          start: "top center+=450",
+          end: "top",
+        }
+      });
+
+  }, []);
 
     return (
         <div id="project" className="project">
@@ -14,7 +68,7 @@ const Project = () => {
                     justify="center"
                     alignItems="center"
                     style={{height:"100%"}}>
-                      <Grid item sm={6}>
+                      <Grid item sm={6} ref={headerRef}>
                         <div className="project_font">project1</div>
                         <div className="project_paper1">
                           <a href="https://github.com/Pheejung/Android">
@@ -22,7 +76,7 @@ const Project = () => {
                           </a>
                         </div>
                       </Grid>
-                      <Grid item sm={6}>
+                      <Grid item sm={6} ref={headerRef1}>
                         <div style={{ margin:30 }}>
                           <div className="project_font1_1">프로젝트</div>
                           <div className="project_font2">MEDITORY</div>
@@ -37,7 +91,7 @@ const Project = () => {
                           <button className="btn" style={{margin: 5}}>Java</button>
                         </div>
                       </Grid>
-                      <Grid item sm={6}>
+                      <Grid item sm={6} ref={headerRef2}>
                         <div className="project_font">project2</div>
                         <div className="project_paper1">
                           <a href="https://github.com/codyguide">
@@ -46,7 +100,7 @@ const Project = () => {
                         </div>
                       </Grid>
                       <Grid item sm={6}>
-                        <div style={{ margin:30}}>
+                        <div style={{ margin:30}} ref={headerRef3}>
                           <div className="project_font1_1">프로젝트</div>
                           <div className="project_font2">CODY GUIDE</div>
                           <div className="project_font1">기획의도</div>
