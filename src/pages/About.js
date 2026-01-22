@@ -1,11 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import "./about.css";
-import Grid from '@material-ui/core/Grid';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import TodayIcon from '@material-ui/icons/Today';
 
 
 import { gsap } from "gsap";
@@ -14,92 +11,116 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-    const headerRef = useRef(null);
-    const headerRef1 = useRef(null);
-    const headerRef2 = useRef(null);
+    const heroRef = useRef(null);
+    const profileRef = useRef(null);
+    const valuesRef = useRef(null);
 
     useEffect(() => {
-        gsap.from(headerRef.current, {
-          autoAlpha: 0, 
-          ease: 'none',
-          x: 100,
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top center+=100",
-            end: "top",
-          }
+        const nodes = [heroRef.current, profileRef.current, valuesRef.current].filter(Boolean);
+        nodes.forEach((node, i) => {
+            gsap.from(node, {
+                autoAlpha: 0,
+                y: 40,
+                duration: 0.7,
+                delay: i * 0.12,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: node,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
         });
-    
-        gsap.from(headerRef1.current, {
-            autoAlpha: 0, 
-            ease: 'none',
-            x: -100,
-            scrollTrigger: {
-              trigger: headerRef1.current,
-              start: "top center+=150",
-              end: "top",
-            }
-          });
-    
-          gsap.from(headerRef2.current, {
-            autoAlpha: 0, 
-            ease: 'none',
-            x: 100,
-            scrollTrigger: {
-              trigger: headerRef2.current,
-              start: "top center+=280",
-              end: "top",
-            }
-          });
-    
-      }, []);
+    }, []);
 
     return (
         <section id="about" className="about">
-            <div className="about_title">ABOUT</div>
-            <section ref={headerRef}>
-                <div className="about_title1">WHO</div>
-                <div className="about_font">1998.05.13 (23세)</div>
-                <div className="about_font3">박희정</div>
-                <div className="about_font1">"빠르게 변하는 트렌드를 센스있게 알아채고, 새로움에 있어서 두려워하지 않는 개발자입니다."</div>
-                <div className="about_font1">"의무적으로만 하는 개발자가 아닌 즐길 수 있는 개발자가 되도록 하겠습니다."</div>
-            </section>
-            <Grid
-                container
-                ref={headerRef1}
-                justify="center"
-                alignItems="center"
-                style={{height:"100%"}}>
-                <Grid item style={{margin:15, marginTop:50, marginBottom: 50}}>
-                    <div className="about_font1_2">안녕하세요. 저는 고등학교때 앱,웹 개발자에 대한 매력을 느끼게 되었고 대학교를 무작정 '컴퓨터공학과'로 진로를 정했습니다. <br />
-                    대학교에 올라와 처음 접하는 언어들이라 낯설고 어려웠지만 내가 코딩하는대로 바로 실현되는 모습이 너무나 재미있었습니다. <br />
-                    또 개발을 하면서 개발자는 코드를 잘 짜는 것도 중요하지만 협업을 위해 커뮤니케이션이 더 중요하다는 것을 알게되었습니다. <br />
-                    저는 꾸준히 성장하고 함께 일하고 싶은 개발자가 되는 것이 목표입니다. 항상 자기개발하고 커뮤니케이션을 키워 발전하는 <br /> 개발자가 되겠습니다.</div>
-                    {/* <div className="about_font1_2">처음 간단한 프로젝트를 하면서 보고 치는 것이 아닌 내가 직접 구현하고 해결하는 것이 많이 어려웠습니다.</div> */}
-                </Grid>
-            </Grid>
-            <Grid
-                container
-                ref={headerRef2}
-                justify="center"
-                alignItems="center"
-                style={{height:"100%"}}>
-                <Grid item style={{margin:50}}>
-                    <div className="about_paper1"><AccessibilityNewIcon style={{ fontSize: 100 }}/></div>
-                    <div className="about_font2">긍정</div>
-                    <div className="about_font5">항상 긍정적인 마인드로</div>
-                </Grid>
-                <Grid item style={{margin:50}}>
-                    <div className="about_paper1"><EmojiPeopleIcon style={{ fontSize: 100 }}/></div>
-                    <div className="about_font2">도전</div>
-                    <div className="about_font5">두려워하지 않는 도전정신</div>
-                </Grid>
-                <Grid item style={{margin:50}}>
-                    <div className="about_paper1"><DirectionsWalkIcon style={{ fontSize: 100 }}/></div>
-                    <div className="about_font2">성실</div>
-                    <div className="about_font5">작은일이라도 성실하게</div>                
-                </Grid>
-            </Grid>
+            <div className="container">
+                <div className="about_title">ABOUT</div>
+
+                <div className="about-hero" ref={heroRef}>
+                    <aside className="profile-card" ref={profileRef}>
+                        <div className="avatar-wrap">
+                            <img className="profile-img" src={process.env.PUBLIC_URL + '/logo192.png'} alt="Heejung profile" />
+                        </div>
+                        <div className="profile-actions">
+                            <a className="btn primary" href="#contact">Contact</a>
+                            <a className="btn outline" href={process.env.PUBLIC_URL + '/resume.pdf'} target="_blank" rel="noreferrer">Resume</a>
+                        </div>
+                    </aside>
+
+                    <div className="about-content">
+                        <h3 className="about-heading">간단한 소개</h3>
+                        <p className="about-text">
+                            비즈니스의 복잡도를 단순하고 견고한 아키텍처로 풀어내는 프론트엔드 개발자 박희정입니다. 운영 제약·사용자 흐름·비즈니스 목적을 함께 고려해 구조를 설계하며, 이벤트 중심의 게임 서비스에서는 상태 관리 단순화·UI 재사용·설정 기반 운영 체계를 도입해 반복 작업과 운영 리스크를 줄였습니다. 기술은 문제 해결과 운영 효율화의 수단으로 보고 장기적 유지보수성과 서비스 안정성을 우선합니다.
+                        </p>
+
+                        <div className="about-keywords">
+                            <div className="keyword-card">
+                                <div className="keyword-body">
+                                    <div className="keyword-title">제품 안정성</div>
+                                </div>
+                            </div>
+
+                            <div className="keyword-card">
+                                <div className="keyword-body">
+                                    <div className="keyword-title">운영 효율</div>
+                                </div>
+                            </div>
+
+                            <div className="keyword-card">
+                                <div className="keyword-body">
+                                    <div className="keyword-title">재사용성</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="about-skills">
+                            <span className="skill-pill">Next.js</span>
+                            <span className="skill-pill">React</span>
+                            <span className="skill-pill">Angular</span>
+                            <span className="skill-pill">TypeScript</span>
+                            <span className="skill-pill">JavaScript</span>
+                            <span className="skill-pill">HTML/CSS</span>
+                        </div>
+
+                        <div className="about-highlight">
+                            <h4>핵심 역량</h4>
+                            <ul>
+                                <li>컴포넌트 기반 아키텍처 설계</li>
+                                <li>퍼포먼스 최적화 (번들/렌더링)</li>
+                                <li>클린 코드 및 문서화</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="about-values" ref={valuesRef}>
+                    <article className="value-card">
+                        <div className="value-icon"><AccessibilityNewIcon style={{ fontSize: 28 }} /></div>
+                        <div className="value-body">
+                            <h4 className="value-title">긍정</h4>
+                            <p className="value-desc">문제를 기회로 보고 해결책을 제시합니다. 팀과 함께 성과를 만듭니다.</p>
+                        </div>
+                    </article>
+
+                    <article className="value-card">
+                        <div className="value-icon"><EmojiPeopleIcon style={{ fontSize: 28 }} /></div>
+                        <div className="value-body">
+                            <h4 className="value-title">도전</h4>
+                            <p className="value-desc">새로운 기술을 빠르게 학습하고 실무에 적용해 가치를 만듭니다.</p>
+                        </div>
+                    </article>
+
+                    <article className="value-card">
+                        <div className="value-icon"><DirectionsWalkIcon style={{ fontSize: 28 }} /></div>
+                        <div className="value-body">
+                            <h4 className="value-title">성실</h4>
+                            <p className="value-desc">작은 디테일까지 놓치지 않고 안정적인 서비스 운영을 우선합니다.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </section>
     );
 };

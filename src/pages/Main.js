@@ -1,81 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import "./main.css";
 
 const Main = () => {
-    const [blogTitle, setBlogTitle] = useState('');
-    const [count, setCount] = useState(0);
-    const completionWord = 'Welcome!';
-
-    useEffect(() => {
-        const typingInterval = setInterval(() => {
-        setBlogTitle((prevTitleValue) => {
-            setBlogTitle(prevTitleValue + completionWord[count]);
-            // let result = prevTitleValue ? prevTitleValue + completionWord[count] : completionWord[0];
-            setCount(count + 1);
-        });
-        }, 100);
-
-        if (count === completionWord.length) {
-            clearInterval(typingInterval);
-            // setCount(0);
-            // setBlogTitle('');
-            }
-
-        return () => {
-            clearInterval(typingInterval);
-        };
-    });
-
-    const [blogTitle1, setBlogTitle1] = useState('');
-    const [count1, setCount1] = useState(0);
-    const completionWord1 = "HEEJUNG'S PORTFOLIO";
-
-    useEffect(() => {
-        const typingInterval = setInterval(() => {
-        setBlogTitle1((prevTitleValue) => {
-            setBlogTitle1(prevTitleValue + completionWord1[count1]);
-            // let result = prevTitleValue ? prevTitleValue + completionWord[count] : completionWord[0];
-            setCount1(count1 + 1);
-        });
-        }, 100);
-
-        if (count1 === completionWord1.length) {
-            clearInterval(typingInterval);
-            // setCount(0);
-            // setBlogTitle('');
-            }
-
-        return () => {
-            clearInterval(typingInterval);
-        };
-    });
-
-    
-
-
     return (
-        <section id="main" className="main">
-            <section className='main-box'>
-                <div className="main_font">
-                    <span>{blogTitle}</span>
+        <main id="main" className="main container">
+            <section className="hero-hero">
+                <div className="hero-inner">
+                    <h1 className="hero-name">안녕하세요, 프론트엔드 개발자 박희정입니다.</h1>
+                    <p className="hero-tag">사용성과 성능을 고려한 깔끔한 인터페이스를 만듭니다.</p>
+
+                    <div className="hero-actions">
+                        <a className="btn primary" href="#project">프로젝트 보기</a>
+                        <a className="btn outline" href="#contact">연락하기</a>
+                    </div>
                 </div>
-                {/* <div className="main_font">
-                    <span>W</span>
-                    <span>e</span>
-                    <span>l</span>
-                    <span>c</span>
-                    <span>o</span>
-                    <span>m</span>
-                    <span>e</span>
-                    <span>!</span>
-                </div> */}
-                <div className="main_font1">{blogTitle1}</div>
             </section>
-            {/* <div className="main_font2">{blogTitle}</div> */}
-            <div className="main_font2">새로운 배움에 도전하고 끊임없이 발전하는 개발자, 박희정입니다.</div>
-            {/* <div className="main_font"><p>새로운 배움에 도전하고 끊임없이 발전하는 개발자, 박희정입니다.</p></div> */}
-        </section>
-    );
-};
+
+            <section className="features container">
+                <div className="feature-item">
+                    <div className="feature-icon">⚡</div>
+                    <h4>퍼포먼스 최적화</h4>
+                    <p>번들과 렌더링을 고려한 빠른 웹을 만듭니다.</p>
+                </div>
+                <div className="feature-item">
+                    <div className="feature-icon">🎨</div>
+                    <h4>디자인 시스템</h4>
+                    <p>재사용 가능한 컴포넌트로 일관된 UI를 제공합니다.</p>
+                </div>
+                <div className="feature-item">
+                    <div className="feature-icon">🤝</div>
+                    <h4>협업과 문서화</h4>
+                    <p>명확한 코드와 문서로 팀 생산성을 높입니다.</p>
+                </div>
+            </section>
+        </main>
+    )
+}
 
 export default Main;

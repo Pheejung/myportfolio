@@ -8,9 +8,11 @@ import Project from "./pages/Project";
 import Contact from "./pages/Contact";
 import Career from './pages/Career';
 
-
 function App() {
   return (
+    // <div>
+    //   <FullPageScroll />
+    // </div>
    <div>
      <Header />
      <Main />

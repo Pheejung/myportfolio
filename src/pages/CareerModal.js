@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { Button } from '@material-ui/core';
 
 export const CareerModal = ( props ) => {
 
   useEffect(() => {
-      console.log(props.data)
   }, [props.open]);
 
   return (
     <section className="modal">
-      <section className="modal-wrap" style={{ width: 'calc(100% - 300px' }}>
+      <section className="modal-wrap modal-calc">
           <header className="modal-header">
             <div className="modal-title"></div>
             <Button className="close-btn" onClick={props.close}>

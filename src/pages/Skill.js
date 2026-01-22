@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import "./skill.css";
 import Grid from '@material-ui/core/Grid';
-import CheckCircleOutlineSharpIcon from '@material-ui/icons//CheckCircleOutlineSharp';
+import CheckCircleOutlineSharpIcon from '@material-ui/icons/CheckCircleOutlineSharp';
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -76,53 +76,64 @@ useEffect(() => {
         <section id="skill" className="skill">
             <section>
                 <div className="skill_title" >SKILLS</div>
-                <Grid
-                    container
-                    justify="center"
-                    alignItems="center"
-                    style={{height:"100%"}}
-                >
-                    <Grid item sm={4} className="skill-grid" ref={headerRef}>
-                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
-                        <div><h3 className='skill-subtitle'>FrontEnd</h3></div>
-                        <div className='skill-font'>HTML5</div>
-                        <div className='skill-font'>CSS</div>
-                        <div className='skill-font'>JavaScript</div>
-                        <div className='skill-font'>REACT</div>
-                        <div className='skill-font'>Angular</div>
-                    </Grid>
-                    <Grid item sm={4} className="skill-grid" ref={headerRef1}>
-                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
-                        <div><h3 className='skill-subtitle'>BackEnd</h3></div>
-                        <div className='skill-font'>PHP</div>
-                        <div className='skill-font'>JAVA</div>
-                        <div className='skill-font'>Django</div>
-                    </Grid>
-                    <Grid item sm={4} className="skill-grid" ref={headerRef2}>
-                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
-                        <div><h3 className='skill-subtitle'>DB</h3></div>
-                        <div className='skill-font'>MariaDB</div>
-                        <div className='skill-font'>MySQL</div>
-                        <div className='skill-font'>mongoDB</div>
-                    </Grid>
-                    <Grid item sm={4} className="skill-grid" ref={headerRef3}>
-                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
-                        <div><h3 className='skill-subtitle'>TOOL</h3></div>
-                        <div className='skill-font'>Visual Studio Code</div>
-                        <div className='skill-font'>Eclipse</div>
-                        <div className='skill-font'>Android studio</div>
-                        <div className='skill-font'>Bitbucket</div>
-                        <div className='skill-font'>Github</div>
-                    </Grid>
-                    <Grid item sm={4} className="skill-grid" ref={headerRef4}>
-                        <CheckCircleOutlineSharpIcon className='skill-icon' style={{ fontSize: 54}}/>
-                        <div><h3 className='skill-subtitle'>Cloud</h3></div>
-                        <div className='skill-font'>Azure</div>
-                        <div className='skill-font'>Ubuntu</div>
-                    </Grid>
-                    <Grid item sm={4} className="skill-grid">
-                    </Grid>
-                </Grid>
+                <div className="container">
+                  <Grid
+                      container
+                      className="skill-grid"
+                      justify="center"
+                      alignItems="flex-start"
+                      style={{height:"100%"}}
+                  >
+                      <Grid item sm={4} className="skill-card" ref={headerRef}>
+                          <CheckCircleOutlineSharpIcon className='icon' style={{ fontSize: 44}}/>
+                          <h4 className='skill-subtitle'>FrontEnd</h4>
+                          <div className='skill-list'>
+                              <span className='skill-pill'>HTML5</span>
+                              <span className='skill-pill'>CSS</span>
+                              <span className='skill-pill'>JavaScript</span>
+                              <span className='skill-pill'>React</span>
+                              <span className='skill-pill'>Angular</span>
+                          </div>
+                      </Grid>
+                      <Grid item sm={4} className="skill-card" ref={headerRef1}>
+                          <CheckCircleOutlineSharpIcon className='icon' style={{ fontSize: 44}}/>
+                          <h4 className='skill-subtitle'>BackEnd</h4>
+                          <div className='skill-list'>
+                              <span className='skill-pill'>PHP</span>
+                              <span className='skill-pill'>Java</span>
+                              <span className='skill-pill'>Django</span>
+                          </div>
+                      </Grid>
+                      <Grid item sm={4} className="skill-card" ref={headerRef2}>
+                          <CheckCircleOutlineSharpIcon className='icon' style={{ fontSize: 44}}/>
+                          <h4 className='skill-subtitle'>DB</h4>
+                          <div className='skill-list'>
+                              <span className='skill-pill'>MariaDB</span>
+                              <span className='skill-pill'>MySQL</span>
+                              <span className='skill-pill'>mongoDB</span>
+                          </div>
+                      </Grid>
+                      <Grid item sm={4} className="skill-card" ref={headerRef3}>
+                          <CheckCircleOutlineSharpIcon className='icon' style={{ fontSize: 44}}/>
+                          <h4 className='skill-subtitle'>TOOL</h4>
+                          <div className='skill-list'>
+                              <span className='skill-pill'>VS Code</span>
+                              <span className='skill-pill'>Eclipse</span>
+                              <span className='skill-pill'>Android Studio</span>
+                              <span className='skill-pill'>Bitbucket</span>
+                              <span className='skill-pill'>Github</span>
+                          </div>
+                      </Grid>
+                      <Grid item sm={4} className="skill-card" ref={headerRef4}>
+                          <CheckCircleOutlineSharpIcon className='icon' style={{ fontSize: 44}}/>
+                          <h4 className='skill-subtitle'>Cloud</h4>
+                          <div className='skill-list'>
+                              <span className='skill-pill'>Azure</span>
+                              <span className='skill-pill'>Ubuntu</span>
+                          </div>
+                      </Grid>
+                  </Grid>
+                </div>
                 {/* <Grid
                     container
                     justify="center"

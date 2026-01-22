@@ -1,127 +1,50 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import "./project.css";
-import Grid from '@material-ui/core/Grid';
-import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+const projects = [
+    {
+    title: 'CODY GUIDE',
+    desc: '날씨 기반 코디 가이드 앱 (구글맵, 날씨 API 연동, 게시판/갤러리)',
+    img: process.env.PUBLIC_URL + '/코디가이드1.gif',
+    link: 'https://bit.ly/3m0zSni',
+    tags: ['React', 'Django']
+  },
+  {
+    title: 'MEDITORY',
+    desc: '약품 정보를 보다 편리하게 제공하는 모바일 앱 (공공데이터 활용, 검색/카테고리)',
+    img: process.env.PUBLIC_URL + '/의약품.png',
+    link: 'https://github.com/Pheejung/Android',
+    tags: ['Android', 'Java']
+  }
+];
 
 const Project = () => {
-  const headerRef = useRef(null);
-  const headerRef1 = useRef(null);
-  const headerRef2 = useRef(null);
-  const headerRef3 = useRef(null);
+  return (
+    <section id="project" className="project">
+      <div className="container">
+        <h2 className="project_title">Projects</h2>
 
-  useEffect(() => {
-    gsap.from(headerRef.current, {
-      autoAlpha: 0, 
-      ease: 'none',
-      y: 100,
-      scrollTrigger: {
-        trigger: headerRef.current,
-        start: "top center+=200",
-        end: "top",
-      }
-    });
-
-    gsap.from(headerRef1.current, {
-        autoAlpha: 0, 
-        ease: 'none',
-        y: 100,
-        scrollTrigger: {
-          trigger: headerRef1.current,
-          start: "top center+=350",
-          end: "top",
-        }
-      });
-
-      gsap.from(headerRef2.current, {
-        autoAlpha: 0, 
-        ease: 'none',
-        y: 100,
-        scrollTrigger: {
-          trigger: headerRef2.current,
-          start: "top center+=300",
-          end: "top",
-        }
-      });
-
-      gsap.from(headerRef3.current, {
-        autoAlpha: 0, 
-        ease: 'none',
-        y: 100,
-        scrollTrigger: {
-          trigger: headerRef3.current,
-          start: "top center+=450",
-          end: "top",
-        }
-      });
-
-  }, []);
-
-    return (
-        <div id="project" className="project">
-            <div className="project_title">PROJECTS</div>
-                <Grid
-                    container
-                    justify="center"
-                    alignItems="center"
-                    style={{height:"100%"}}>
-                      <Grid item sm={6} ref={headerRef}>
-                        <div className="project_font">project1</div>
-                        <div className="project_paper1">
-                          <a href="https://github.com/Pheejung/Android">
-                          <img src={process.env.PUBLIC_URL + '/의약품.png'} width="80%" height="100%"/>
-                          </a>
-                        </div>
-                      </Grid>
-                      <Grid item sm={6} ref={headerRef1}>
-                        <div style={{ margin:30 }}>
-                          <div className="project_font1_1">프로젝트</div>
-                          <div className="project_font2">MEDITORY</div>
-                          <div className="project_font1">기획의도</div>
-                          <div className="project_font2">약국외에도 의약품을 판매하는 곳들이 늘어나고 있어서 부위별 약품 정보를 사용자들이 보다 편리하게 알고 사용할 수 있는 앱을 만들어 보고 싶었습니다.</div>
-                          <div className="project_font1">구현기능</div>
-                          <div className="project_font2">- 공공 데이터 API 약품 정보를 받아와 xml파싱하기</div>
-                          <div className="project_font2">- 의약품 검색기능 구현</div>
-                          <div className="project_font2">- 의약품 카테고리별 구현</div>
-                          <div className="project_font2">- 의약품 정보, 효능 구현</div>
-                          <button className="btn" style={{margin: 5}}>Andriod Studio</button>
-                          <button className="btn" style={{margin: 5}}>Java</button>
-                        </div>
-                      </Grid>
-                      <Grid item sm={6} ref={headerRef2}>
-                        <div className="project_font">project2</div>
-                        <div className="project_paper1">
-                          <a href="https://github.com/codyguide">
-                          <img src={process.env.PUBLIC_URL + '/코디가이드1.gif'} width="100%" height="100%" />
-                          </a>
-                        </div>
-                      </Grid>
-                      <Grid item sm={6}>
-                        <div style={{ margin:30}} ref={headerRef3}>
-                          <div className="project_font1_1">프로젝트</div>
-                          <div className="project_font2">CODY GUIDE</div>
-                          <div className="project_font1">기획의도</div>
-                          <div className="project_font2">일상생활 또는 해외여행시 제일 많이 하는 고민이 날씨에 맞는 옷차림이라고 생각하여 날씨에 맞는 옷차림 가이드를 만들었습니다.</div>
-                          <div className="project_font1">구현기능</div>
-                          <div className="project_font2">- 구글맵API와 날씨API를 연동하여 날씨에 맞는 코디 가이드 구현</div>
-                          <div className="project_font2">- 로그인/회원가입 기능 구현</div>
-                          <div className="project_font2">- 코디 게시판 구현</div>
-                          <div className="project_font2">- 코디 갤러리 구현</div>
-                          <button className="btn" style={{margin: 5}}>React</button>
-                          <button className="btn" style={{margin: 5}}>Django</button>
-                          <button className="btn" style={{margin: 5}}>Mysql</button>
-                          {/* <div className="project_font3">https://github.com/codyguide/front-end</div> */}
-                          {/* <div className="project_font3">https://github.com/codyguide/back-end</div> */}
-                          {/* <div className="project_font3">시연영상: https://bit.ly/3m0zSni</div> */}
-                          <div className="project_font4"><a href="https://bit.ly/3m0zSni">시연영상 <SubscriptionsOutlinedIcon viewBox='0 0 40 3' style={{fontSize: 35}}/></a></div>
-                        </div>
-                      </Grid>
-                </Grid>
-            </div>
-    );
-}; 
+        <div className="project-grid">
+          {projects.map((p, i) => (
+            <article className="project-item" key={i}>
+              <a className="project-media" href={p.link} target="_blank" rel="noreferrer">
+                <img src={p.img} alt={`${p.title} screenshot`} />
+                <div className="project-overlay">
+                  <div className="overlay-title">{p.title}</div>
+                  <div className="overlay-desc">{p.desc}</div>
+                </div>
+              </a>
+              <div className="project-body">
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+                <div className="tags">{p.tags.map(t => <span className="tag" key={t}>{t}</span>)}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default Project;
