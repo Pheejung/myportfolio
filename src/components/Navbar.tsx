@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
         <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
           <path d="M24 4L4 24L24 44L44 24L24 4Z" fill="currentColor" />
         </svg>
-        <span className="font-black text-xl tracking-tight">PARK HEE-JUNG</span>
+        <span className="font-black text-xl tracking-tight">PARK HEE JUNG</span>
       </div>
       <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-600">
         <a href="#about" className="hover:text-primary transition-colors">About</a>

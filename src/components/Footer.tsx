@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
           </a>
         </div>
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-bold text-gray-500 tracking-widest uppercase">
-          <p>© 2024 PARK HEE-JUNG. ALL RIGHTS RESERVED.</p>
+          <p>© 2026 PARK HEE JUNG. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-primary transition-colors">GitHub</a>
             <a href="#" className="hover:text-primary transition-colors">LinkedIn</a>
