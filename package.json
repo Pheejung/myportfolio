@@ -1,56 +1,22 @@
 {
-  "name": "myportfolio",
-  "version": "0.1.0",
+  "name": "park-hee-jung-portfolio",
   "private": true,
-  "homepage": "http://Pheejung.github.io/myportfolio",
-  "dependencies": {
-    "@material-ui/core": "^4.11.1",
-    "@material-ui/icons": "^4.9.1",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "fullpage.js": "2.9.6",
-    "gsap": "^3.12.2",
-    "jquery": "^3.7.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-fade-in": "^1.1.1",
-    "react-intersection-observer": "^9.5.2",
-    "react-modal": "^3.16.1",
-    "react-scripts": "4.0.1",
-    "scrolltrigger": "^1.0.1",
-    "web-vitals": "^0.2.4",
-    "webpack-cli": "^5.1.4"
-  },
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "lucide-react": "^0.563.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.29",
-    "gh-pages": "^3.2.3",
-    "react-app-rewired": "^2.2.1"
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
   }
 }
