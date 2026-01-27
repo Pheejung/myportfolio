@@ -1,10 +1,15 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 
-const LayoutSidebar: React.FC = () => {
+interface LayoutSidebarProps {
+  selectedCompany: string;
+  setSelectedCompany: (company: string) => void;
+}
+
+const LayoutSidebar: React.FC<LayoutSidebarProps> = ({ selectedCompany, setSelectedCompany }) => {
   return (
     <aside>
-      <Sidebar />
+      <Sidebar selectedCompany={selectedCompany} setSelectedCompany={setSelectedCompany} />
     </aside>
   );
 };

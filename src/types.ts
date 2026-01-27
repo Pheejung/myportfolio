@@ -38,6 +38,7 @@ export interface ImpactProject {
   solution: string;
   tags: string[];
   iconType: 'network' | 'users' | 'chart' | 'settings' | 'route' | 'grid' | 'scanner';
+  details?: string[];
 }
 
 export interface Experience {

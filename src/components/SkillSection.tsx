@@ -1,47 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const SKILL_CATEGORIES = [
   { key: 'frontend', label: '프론트엔드' },
   { key: 'library', label: '라이브러리' },
-  { key: 'env', label: '환경 및 배포' },
-  { key: 'design', label: '디자인' },
+  { key: 'env', label: '환경 및 배포' }
 ];
 
 const SKILLS = [
-  { name: 'JavaScript', icon: '/icons/js.svg', category: 'frontend' },
-  { name: 'React', icon: '/icons/react.svg', category: 'frontend' },
-  { name: 'Next.js', icon: '/icons/nextjs.svg', category: 'frontend' },
-  { name: 'TypeScript', icon: '/icons/typescript.svg', category: 'frontend' },
-  { name: 'Bear', icon: '/icons/bear.svg', category: 'frontend' },
-  { name: 'Nail', icon: '/icons/nail.svg', category: 'frontend' },
-  { name: 'Tailwind', icon: '/icons/tailwind.svg', category: 'library' },
-  { name: 'Vite', icon: '/icons/vite.svg', category: 'library' },
-  { name: 'Jest', icon: '/icons/jest.svg', category: 'library' },
-  { name: 'Octopus', icon: '/icons/octopus.svg', category: 'library' },
-  { name: 'Storybook', icon: '/icons/storybook.svg', category: 'library' },
-  { name: 'GraphQL', icon: '/icons/graphql.svg', category: 'library' },
-  { name: 'Beach', icon: '/icons/beach.svg', category: 'env' },
-  { name: 'Clipboard', icon: '/icons/clipboard.svg', category: 'env' },
-  { name: 'Redux', icon: '/icons/redux.svg', category: 'library' },
-  { name: 'Sass', icon: '/icons/sass.svg', category: 'library' },
-  { name: 'Webpack', icon: '/icons/webpack.svg', category: 'env' },
-  { name: 'GitHub', icon: '/icons/github.svg', category: 'env' },
-  { name: 'Vercel', icon: '/icons/vercel.svg', category: 'env' },
-  { name: 'AWS', icon: '/icons/aws.svg', category: 'env' },
-  { name: 'Figma', icon: '/icons/figma.svg', category: 'design' },
-  { name: 'Photoshop', icon: '/icons/photoshop.svg', category: 'design' },
-  { name: 'Illustrator', icon: '/icons/illustrator.svg', category: 'design' },
-  { name: 'Premiere', icon: '/icons/premiere.svg', category: 'design' },
-  { name: 'XD', icon: '/icons/xd.svg', category: 'design' },
+  { name: 'JavaScript', icon: '/icons/js.png', category: 'frontend' },
+  { name: 'TypeScript', icon: '/icons/ts.png', category: 'frontend' },
+  { name: 'React', icon: '/icons/react.png', category: 'frontend' },
+  { name: 'Next.js', icon: '/icons/next.svg', category: 'frontend' },
+  { name: 'Angular', icon: '/icons/angular.png', category: 'frontend' },
+  { name: 'Redux', icon: '/icons/redux.png', category: 'library' },
+  { name: 'Zustand', icon: '/icons/zustand.webp', category: 'library' },
+  { name: 'Sass', icon: '/icons/sass.png', category: 'library' },
+  { name: 'Tailwind', icon: '/icons/tailwind.png', category: 'library' },
+  { name: 'Storybook', icon: '/icons/storybook.png', category: 'library' },
+  { name: 'Tanstack', icon: '/icons/tanstack.png', category: 'library' },
+  { name: 'Webpack', icon: '/icons/webpack.png', category: 'env' },
+  { name: 'GitHub', icon: '/icons/github.png', category: 'env' },
+  { name: 'Cloudflare', icon: '/icons/cloudflare.jpg', category: 'env' },
+  { name: 'Vite', icon: '/icons/vite.svg', category: 'env' },
+  { name: 'Azure', icon: '/icons/azure.svg', category: 'env' },
 ];
 
 const SkillSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('frontend');
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    cardRefs.current.forEach((card, i) => {
+      if (card) {
+        gsap.fromTo(
+          card,
+          { y: 40, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.7,
+            delay: i * 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 95%',
+              toggleActions: 'play none none none',
+              once: true,
+            },
+          }
+        );
+      }
+    });
+  }, [activeTab]);
 
   return (
-    <section className="mb-24">
+    <section id="skill" className="mt-20 mb-24">
       <div className="max-w-3xl mx-auto text-center">
-        <h3 className="text-primary font-bold text-sm mb-2 tracking-wide">기술 스택 및 도구</h3>
+        <h3 className="text-primary font-bold text-sm mt-10 mb-2 tracking-wide">기술 스택 및 도구</h3>
         <h2 className="text-2xl md:text-3xl font-black mb-3">아래의 기술을 사용할 수 있습니다.</h2>
       </div>
       <div className="max-w-4xl mx-auto mt-8 mb-8 flex justify-center">
@@ -58,9 +76,10 @@ const SkillSection: React.FC = () => {
         </div>
       </div>
       <div className="max-w-4xl mx-auto grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-6 justify-items-center">
-        {SKILLS.filter(skill => skill.category === activeTab).map(skill => (
+        {SKILLS.filter(skill => skill.category === activeTab).map((skill, i) => (
           <div
             key={skill.name}
+            ref={el => cardRefs.current[i] = el}
             className="w-20 h-20 bg-white rounded-2xl shadow-md flex flex-col items-center justify-center transition-transform hover:-translate-y-2 hover:shadow-xl border border-gray-100"
           >
             <img src={skill.icon} alt={skill.name} className="w-10 h-10 mb-1" />

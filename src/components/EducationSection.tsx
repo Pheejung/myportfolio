@@ -51,7 +51,7 @@ const EducationSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="mb-20">
+  <section id="education" className="mb-20">
       <h2 ref={headingRef} className="text-4xl font-black mb-12 tracking-tight">Education</h2>
       <div className="space-y-12">
         {EDUCATION.map((edu, i) => (

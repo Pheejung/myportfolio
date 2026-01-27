@@ -98,15 +98,15 @@ const HeroSection: React.FC = () => {
   return (
     <section id="about" className="pt-48 pb-24 px-6 md:px-20 lg:px-40 bg-white" ref={sectionRef}>
       <div className="max-w-6xl mx-auto">
-        <span ref={subtitleRef} className="text-primary font-black uppercase tracking-[0.2em] text-xs mb-6 block animate-pulse">Frontend Architect</span>
         <h1 ref={headingRef} className="text-6xl md:text-[4rem] font-black leading-[0.9] tracking-tighter mb-10" style={{ lineHeight: '70px' }}>
-          안녕하세요. <br />프론트엔드 개발자 <span className="text-primary">박희정</span> 입니다.
+          안녕하세요. <br />프론트엔드 개발자 <span className="text-primary">박희정</span>입니다.
         </h1>
         <p ref={descRef} className="text-xl md:text-2xl text-gray-500 font-medium max-w-3xl leading-relaxed mb-16">
-          I am Park Hee jung, a Senior Frontend Developer specializing in high-performance WebGL environments and enterprise logistics systems. I transform complex architectural problems into seamless, measurable user experiences.
+          최신 기술을 활용해 다양한 분야의 서비스를 설계하고 구현했습니다.<br />
+          기술과 경험을 바탕으로, 복잡한 요구도 쉽고 빠르게 풀어내는 개발을 지향합니다.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <>
             {["speed", "architecture", "insights"].map((icon, i) => (
               <div
@@ -114,16 +114,23 @@ const HeroSection: React.FC = () => {
                 ref={el => cardsRef.current[i] = el}
                 className="p-8 rounded-2xl border border-primary/5 bg-primary/[0.02] hover:bg-primary/[0.05] transition-colors group"
               >
-                <span className="material-symbols-outlined text-primary mb-4 text-3xl group-hover:scale-110 transition-transform">{icon}</span>
+                <span className="material-symbols-outlined text-primary mb-4 text-3xl group-hover:scale-110 transition-transform">
+                  {icon === "speed"
+                    ? "diversity_3" // 사용자 경험 최적화: 다양성, 사람 중심
+                    : icon === "architecture"
+                    ? "schema" // 확장성 아키텍처: 구조, 설계
+                    : "groups_3" // 커뮤니케이션 & 협업: 협업, 그룹
+                  }
+                </span>
                 <h3 className="font-black text-lg mb-2">
-                  {icon === "speed" ? "Performance First" : icon === "architecture" ? "Clean Architecture" : "Impact Driven"}
+                  {icon === "speed" ? "사용자 경험 최적화" : icon === "architecture" ? "확장성 아키텍처" : "커뮤니케이션 & 협업"}
                 </h3>
                 <p className="text-sm text-gray-500 leading-relaxed font-medium">
                   {icon === "speed"
-                    ? "Expert in WASM, Web Workers, and rendering optimization to hit 60FPS consistently."
+                    ? "직관적이고 일관된 UI/UX를 설계하며, 사용자 중심의 경험을 만들어왔습니다."
                     : icon === "architecture"
-                    ? "Designing modular, testable frontend infrastructures for 50k+ daily active users."
-                    : "Proven track record of reducing latency by 40% and operational risk by 30% through technical innovation."}
+                    ? "대규모 트래픽과 변화에 유연하게 대응할 수 있는 구조 설계와 성능 개선에 집중해왔습니다."
+                    : "원활한 협업과 소통으로 다양한 직군과 함께 더 나은 결과를 만들어왔습니다."}
                 </p>
               </div>
             ))}
