@@ -40,34 +40,53 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           ×
         </button>
         <div className="mb-6">
-          <h2 className="text-2xl font-black text-red-500 mb-2">{project.title}</h2>
+          <h2 className="text-2xl font-black text-black-500 mb-2">{project.title}</h2>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 mb-2">
+            {project.period && (
+              <span className="text-xs text-gray-400 font-semibold">{project.period}</span>
+            )}
+            {(project.period && (project.id.startsWith('v') || project.id.startsWith('o'))) && (
+              <span className="mx-1 text-gray-300 font-bold">|</span>
+            )}
+            {project.id.startsWith('v') && (
+              <span className="text-xs text-black font-bold">Frontend Developer</span>
+            )}
+            {project.id.startsWith('o') && (
+              <span className="text-xs text-black font-bold">FullStack Developer</span>
+            )}
+          </div>
           <p className="text-sm text-gray-500 mb-2">{project.category}</p>
           <div className="flex flex-wrap gap-2 mb-2">
             {project.tags.map((tag) => (
-              <span key={tag} className="px-3 py-1 bg-red-500 text-[10px] font-black text-white rounded-full tracking-wide">
+              <span key={tag} className="px-3 py-1 bg-white text-[10px] font-black text-black rounded-full tracking-wide border border-red-400">
                 {tag}
               </span>
             ))}
           </div>
+          {project.link && (
+            <div className="mb-2">
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 bg-primary/10 text-primary font-semibold rounded hover:bg-primary/20 transition">
+                프로젝트 바로가기 ↗
+              </a>
+            </div>
+          )}
         </div>
         <div className="mb-4">
-          <p className="text-xs font-bold text-red-500 uppercase mb-1">Impact</p>
-          <p className="text-lg font-black text-red-500">{project.impact}</p>
-        </div>
-        <div className="mb-4">
-          <p className="text-xs font-bold text-gray-400 uppercase mb-1">Problem</p>
-          <p className="text-sm text-gray-700 leading-relaxed">{project.problem}</p>
-        </div>
-        <div className="mb-4">
-          <p className="text-xs font-bold text-gray-400 uppercase mb-1">Solution</p>
-          <p className="text-sm text-gray-500 leading-relaxed">{project.solution}</p>
+          <p className="text-xs font-bold text-gray-400 uppercase mb-1">프로젝트 설명</p>
+          <p className="text-sm text-gray-700 leading-relaxed">{project.subject}</p>
         </div>
         {Array.isArray(project.details) && project.details.length > 0 && (
           <div className="mb-2">
-            <p className="text-xs font-bold text-gray-400 uppercase mb-1">주요 업무 및 성과</p>
+            <p className="text-xs font-bold text-gray-400 uppercase mb-1">주요 업무</p>
             <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
               {project.details.map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <li key={idx}>
+                  {typeof item === 'string'
+                    ? item
+                    : item.type === 'strong'
+                      ? <strong>{item.text}</strong>
+                      : null}
+                </li>
               ))}
             </ul>
           </div>

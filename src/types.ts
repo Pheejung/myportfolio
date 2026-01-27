@@ -31,14 +31,16 @@ export interface CertificationItem {
 
 export interface ImpactProject {
   id: string;
+  period?: string;
   title: string;
   category: string;
+  subject?: string;
+  link?: string;
   impact: string;
   problem: string;
-  solution: string;
   tags: string[];
   iconType: 'network' | 'users' | 'chart' | 'settings' | 'route' | 'grid' | 'scanner';
-  details?: string[];
+  details?: (string | { type: 'strong', text: string })[];
 }
 
 export interface Experience {

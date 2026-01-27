@@ -208,7 +208,7 @@ const ProjectsSection: React.FC = () => {
       <main className="flex-1 space-y-24">
         {/* Hero Header */}
   <section id="experience">
-          <h1 ref={mainHeadingRef} className="text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight">
+          <h1 ref={mainHeadingRef} className="text-4xl md:text-[2.8rem] font-black text-gray-900 leading-[1.1] mb-6 tracking-tight">
             Work Experience
           </h1>
           <p ref={heroDescRef} className="text-lg text-gray-500 max-w-3xl font-medium leading-relaxed">
