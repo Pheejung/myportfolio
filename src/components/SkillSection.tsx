@@ -10,22 +10,22 @@ const SKILL_CATEGORIES = [
 ];
 
 const SKILLS = [
-  { name: 'JavaScript', icon: '/icons/js.png', category: 'frontend' },
-  { name: 'TypeScript', icon: '/icons/ts.png', category: 'frontend' },
-  { name: 'React', icon: '/icons/react.png', category: 'frontend' },
-  { name: 'Next.js', icon: '/icons/next.svg', category: 'frontend' },
-  { name: 'Angular', icon: '/icons/angular.png', category: 'frontend' },
-  { name: 'Redux', icon: '/icons/redux.png', category: 'library' },
-  { name: 'Zustand', icon: '/icons/zustand.webp', category: 'library' },
-  { name: 'Sass', icon: '/icons/sass.png', category: 'library' },
-  { name: 'Tailwind', icon: '/icons/tailwind.png', category: 'library' },
-  { name: 'Storybook', icon: '/icons/storybook.png', category: 'library' },
-  { name: 'Tanstack', icon: '/icons/tanstack.png', category: 'library' },
-  { name: 'Webpack', icon: '/icons/webpack.png', category: 'env' },
-  { name: 'GitHub', icon: '/icons/github.png', category: 'env' },
-  { name: 'Cloudflare', icon: '/icons/cloudflare.jpg', category: 'env' },
-  { name: 'Vite', icon: '/icons/vite.svg', category: 'env' },
-  { name: 'Azure', icon: '/icons/azure.svg', category: 'env' },
+  { name: 'JavaScript', icon: 'icons/js.png', category: 'frontend' },
+  { name: 'TypeScript', icon: 'icons/ts.png', category: 'frontend' },
+  { name: 'React', icon: 'icons/react.png', category: 'frontend' },
+  { name: 'Next.js', icon: 'icons/next.svg', category: 'frontend' },
+  { name: 'Angular', icon: 'icons/angular.png', category: 'frontend' },
+  { name: 'Redux', icon: 'icons/redux.png', category: 'library' },
+  { name: 'Zustand', icon: 'icons/zustand.webp', category: 'library' },
+  { name: 'Sass', icon: 'icons/sass.png', category: 'library' },
+  { name: 'Tailwind', icon: 'icons/tailwind.png', category: 'library' },
+  { name: 'Storybook', icon: 'icons/storybook.png', category: 'library' },
+  { name: 'Tanstack', icon: 'icons/tanstack.png', category: 'library' },
+  { name: 'Webpack', icon: 'icons/webpack.png', category: 'env' },
+  { name: 'GitHub', icon: 'icons/github.png', category: 'env' },
+  { name: 'Cloudflare', icon: 'icons/cloudflare.jpg', category: 'env' },
+  { name: 'Vite', icon: 'icons/vite.svg', category: 'env' },
+  { name: 'Azure', icon: 'icons/azure.svg', category: 'env' },
 ];
 
 const SkillSection: React.FC = () => {
