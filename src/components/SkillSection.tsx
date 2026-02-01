@@ -57,17 +57,17 @@ const SkillSection: React.FC = () => {
   }, [activeTab]);
 
   return (
-    <section id="skill" className="mt-20 mb-24">
+    <section id="skill" className="mt-20 mb-24 px-6">
       <div className="max-w-3xl mx-auto text-center">
-        <h3 className="text-primary font-bold text-sm mt-10 mb-2 tracking-wide">기술 스택 및 도구</h3>
-        <h2 className="text-2xl md:text-3xl font-black mb-3">아래의 기술을 사용할 수 있습니다.</h2>
+        <h3 className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent font-bold text-sm mt-10 mb-2 tracking-wide">기술 스택 및 도구 🛠️</h3>
+        <h2 className="text-2xl md:text-3xl font-black mb-3 text-gray-800">아래의 기술을 사용할 수 있습니다.</h2>
       </div>
       <div className="max-w-4xl mx-auto mt-8 mb-8 flex justify-center">
-        <div className="bg-gray-100 rounded-full flex gap-2 px-2 py-1 shadow-sm">
+        <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-full flex gap-2 px-3 py-2 shadow-md border-2 border-pink-200">
           {SKILL_CATEGORIES.map(tab => (
             <button
               key={tab.key}
-              className={`px-4 py-2 rounded-full font-bold text-sm transition-colors ${activeTab === tab.key ? 'bg-white shadow text-primary' : 'text-gray-500 hover:bg-white/60'}`}
+              className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all ${activeTab === tab.key ? 'bg-white shadow-md text-pink-500 scale-105' : 'text-gray-600 hover:bg-white/60 hover:scale-105'}`}
               onClick={() => setActiveTab(tab.key)}
             >
               {tab.label}
@@ -80,7 +80,7 @@ const SkillSection: React.FC = () => {
           <div
             key={skill.name}
             ref={el => cardRefs.current[i] = el}
-            className="w-20 h-20 bg-white rounded-2xl shadow-md flex flex-col items-center justify-center transition-transform hover:-translate-y-2 hover:shadow-xl border border-gray-100"
+            className="w-20 h-20 bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl shadow-md flex flex-col items-center justify-center transition-all hover:-translate-y-3 hover:shadow-xl hover:scale-110 border-2 border-pink-100"
           >
             <img src={skill.icon} alt={skill.name} className="w-10 h-10 mb-1" />
             <span className="text-xs font-bold text-gray-700 mt-1">{skill.name}</span>

@@ -10,38 +10,41 @@ interface ImpactCardProps {
 
 const ImpactCard: React.FC<ImpactCardProps> = ({ project, color = 'red' }) => {
   const c = {
-    border: 'border-red-100',
-    icon: 'text-red-200',
-    impactLabel: 'text-red-500',
-    impactValue: 'text-red-500',
-    tag: 'bg-white text-black border-red-100',
-    title: 'text-gray-900',
-    category: 'text-gray-300',
+    border: 'border-pink-200',
+    icon: 'text-pink-300',
+    impactLabel: 'text-purple-500',
+    impactValue: 'text-purple-600',
+    tag: 'bg-gradient-to-r from-pink-100 to-purple-100 text-gray-800 border-pink-200',
+    title: 'text-gray-800',
+    category: 'text-gray-400',
     problem: 'text-gray-700',
-    solution: 'text-gray-500',
+    solution: 'text-gray-600',
   };
-  // 랜덤 색상 클래스 목록
+  // 랜덤 색상 클래스 목록 - 더 귀여운 파스텔톤으로
   const hoverColors = [
-    'hover:bg-red-100',
-    'hover:bg-orange-100',
-    'hover:bg-yellow-100',
-    'hover:bg-green-100',
-    'hover:bg-sky-100',
-    'hover:bg-blue-100',
-    'hover:bg-purple-100',
-    'hover:bg-pink-100',
-    'hover:bg-emerald-100',
-    'hover:bg-lime-100',
-    'hover:bg-fuchsia-100',
-    'hover:bg-cyan-100',
-    'hover:bg-indigo-100',
+    'hover:bg-pink-50',
+    'hover:bg-rose-50',
+    'hover:bg-orange-50',
+    'hover:bg-amber-50',
+    'hover:bg-yellow-50',
+    'hover:bg-lime-50',
+    'hover:bg-green-50',
+    'hover:bg-emerald-50',
+    'hover:bg-teal-50',
+    'hover:bg-cyan-50',
+    'hover:bg-sky-50',
+    'hover:bg-blue-50',
+    'hover:bg-indigo-50',
+    'hover:bg-violet-50',
+    'hover:bg-purple-50',
+    'hover:bg-fuchsia-50',
   ];
   // 카드별로 고정된 랜덤 색상 부여
   const [hoverIdx] = useState(() => Math.floor(Math.random() * hoverColors.length));
   const hoverClass = useMemo(() => hoverColors[hoverIdx], [hoverIdx]);
 
   return (
-    <div className={`bg-white p-8 rounded-2xl border ${c.border} shadow-sm hover:shadow-md transition-shadow ${hoverClass}`}>
+    <div className={`bg-white p-8 rounded-3xl border-2 ${c.border} shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ${hoverClass}`}>
       <h3 className={`text-2xl font-bold mb-6 ${c.title}`}>{project.title}</h3>
       <div className="space-y-4 mb-8">
         <div>

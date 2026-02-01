@@ -37,51 +37,51 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
-          <path d="M24 4L4 24L24 44L44 24L24 4Z" fill="currentColor" />
-        </svg>
-        <span className="font-black text-xl tracking-tight">PARK HEE JUNG</span>
+    <nav className="fixed top-0 left-0 w-full z-50 bg-pink-50/90 backdrop-blur-md border-b-2 border-pink-100 px-6 py-4 flex items-center justify-between shadow-sm">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-300 to-purple-300 flex items-center justify-center shadow-md">
+          <span className="text-white text-xl font-black">P</span>
+        </div>
+        <span className="font-black text-xl tracking-tight bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">PARK HEE JUNG</span>
       </div>
-      <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-600">
+      <div className="hidden md:flex items-center gap-4 text-sm font-semibold">
         <a
           href="#about"
           className={
-            `transition-colors px-6 py-2 rounded-full font-bold ` +
+            `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
             (activeSection === 'about'
-              ? 'bg-primary text-white scale-105 shadow-lg'
-              : 'text-gray-600 hover:text-primary')
+              ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
+              : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
           }
           onClick={e => handleNavClick(e, 'about')}
         >About</a>
         <a
           href="#skill"
           className={
-            `transition-colors px-6 py-2 rounded-full font-bold ` +
+            `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
             (activeSection === 'skill'
-              ? 'bg-primary text-white scale-105 shadow-lg'
-              : 'text-gray-600 hover:text-primary')
+              ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
+              : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
           }
           onClick={e => handleNavClick(e, 'skill')}
         >Skill</a>
         <a
           href="#experience"
           className={
-            `transition-colors px-6 py-2 rounded-full font-bold ` +
+            `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
             (activeSection === 'experience'
-              ? 'bg-primary text-white scale-105 shadow-lg'
-              : 'text-gray-600 hover:text-primary')
+              ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
+              : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
           }
           onClick={e => handleNavClick(e, 'experience')}
         >Experience</a>
         <a
           href="#education"
           className={
-            `transition-colors px-6 py-2 rounded-full font-bold ` +
+            `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
             (activeSection === 'education'
-              ? 'bg-primary text-white scale-105 shadow-lg'
-              : 'text-gray-600 hover:text-primary')
+              ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
+              : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
           }
           onClick={e => handleNavClick(e, 'education')}
         >Education</a>

@@ -67,7 +67,7 @@ export const EXPERIENCES: Experience[] = [
 export const VERTIGO_PROJECTS: ImpactProject[] = [
   {
     id: 'v1',
-    period: '2024.11 ~ 2025.01',
+    period: '2025.11 ~ 2026.01',
     title: '[파파야 포탈] 다중 게임 운영을 위한 관리자 사이트 고도화',
     category: '관리자 사이트',
     subject: '게임 포탈 관리자 사이트가 한 개의 게임 중심 구조로 개발되어 있어, 다중 게임 관리로 구축이 필요했습니다.',
