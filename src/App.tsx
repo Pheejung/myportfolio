@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import HeroSection from './components/HeroSection';
@@ -13,13 +12,16 @@ const App: React.FC = () => {
   return (
     <div className="font-sans antialiased text-[#1a1a1a]">
       <Navbar />
-  <HeroSection />
-  <SkillSection />
+      <HeroSection />
+      <SkillSection />
       <ProjectsSection />
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 px-6 md:px-20 lg:px-40 py-24">
+      <section
+        id="education"
+        className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 px-6 md:px-20 lg:px-40 py-24"
+      >
         <EducationSection />
         <CertificationsSection />
-      </div>
+      </section>
       <Footer />
       {/* Aesthetic Blob background decoration */}
       <div className="fixed top-0 left-0 w-full h-screen pointer-events-none -z-10 opacity-40">

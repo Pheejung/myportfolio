@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
   // 스크롤 스무스 이동 함수
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    id: string,
+  ) => {
     e.preventDefault();
     setMobileMenuOpen(false); // 모바일 메뉴 닫기
     const el = document.getElementById(id);
     if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 80; // 헤더 높이만큼 보정
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 100; // 헤더 높이만큼 보정
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
@@ -17,7 +20,7 @@ const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-  const sectionIds = ['about', 'skill', 'experience', 'education'];
+    const sectionIds = ['about', 'skill', 'experience', 'education'];
     const handleScroll = () => {
       let found = false;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
