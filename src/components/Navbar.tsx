@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
     setMobileMenuOpen(false); // 모바일 메뉴 닫기
     const el = document.getElementById(id);
     if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 100; // 헤더 높이만큼 보정
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 90; // 헤더 높이만큼 보정
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-50 bg-pink-50/90 backdrop-blur-md border-b-2 border-pink-100 px-6 py-4 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-300 to-purple-300 flex items-center justify-center shadow-md">
             <span className="text-white text-xl font-black">P</span>
           </div>
