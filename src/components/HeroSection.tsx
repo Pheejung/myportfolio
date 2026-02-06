@@ -104,8 +104,8 @@ const HeroSection: React.FC = () => {
           <span className="text-gray-800">박희정</span>입니다.
         </h1>
         <p ref={descRef} className="text-lg md:text-xl text-gray-600 font-medium max-w-3xl leading-relaxed mb-16">
-          최신 기술을 활용해 다양한 분야의 서비스를 설계하고 구현했습니다. ✨<br />
-          기술과 경험을 바탕으로, 복잡한 요구도 쉽고 빠르게 풀어내는 개발을 지향합니다. 🚀
+          최신 기술을 활용해 다양한 분야의 서비스를 설계하고 구현했습니다.<br />
+          기술과 경험을 바탕으로, 복잡한 요구도 쉽고 빠르게 풀어내는 개발을 지향합니다.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

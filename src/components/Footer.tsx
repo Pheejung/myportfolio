@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
           </a>
         </div> */}
         <div className="border-t-2 border-pink-200 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-bold text-gray-600 tracking-widest uppercase">
-          <p>© 2026 PARK HEE JUNG. ALL RIGHTS RESERVED. ✨</p>
+          <p>© 2026 PARK HEE JUNG. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-8">
             <a href="https://github.com/Pheejung" className="hover:text-pink-500 transition-colors">GitHub 🐙</a>
             <a href="https://velog.io/@gmlwjd2116/posts" className="hover:text-purple-500 transition-colors">Blog 📝</a>
