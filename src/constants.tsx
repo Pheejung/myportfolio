@@ -241,7 +241,7 @@ export const O2OZ_PROJECTS: ImpactProject[] = [
   },
   {
     id: 'o6',
-    period: '2021.02 ~ 2021.06',
+    period: '2021.01 ~ 2021.07',
     title: '[바이크마트] 쇼핑몰 + 관리자 사이트 개발',
     category: '커머스 플랫폼 주문 관리 시스템 구축',
     subject: '오토바이 부품 쇼핑몰 및 관리자 사이트 개발을 통해 주문/재고 관리 자동화 시스템을 구축하였습니다.',
