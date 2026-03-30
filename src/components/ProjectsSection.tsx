@@ -8,7 +8,6 @@ import {
   SECONDARY_PROJECTS,
 } from '../constants';
 import ImpactCard from './ImpactCard';
-import ProjectListItem from './ProjectListItem';
 import LayoutSidebar from './LayoutSidebar';
 import ProjectModal from './ProjectModal';
 
