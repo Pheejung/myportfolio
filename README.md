@@ -3,7 +3,7 @@
   <p>React와 TypeScript로 제작된 동적이고 인터랙티브한 개인 포트폴리오입니다.</p>
   <p>GSAP를 활용한 부드러운 애니메이션과 사용자 경험에 초점을 맞춘 디자인을 확인해 보세요.</p>
   <br/>
-
+  <a href="http://Pheejung.github.io/myportfolio"><strong>포트폴리오 보러가기</strong></a>
 </div>
 
 ---

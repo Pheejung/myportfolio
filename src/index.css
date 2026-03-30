@@ -1,0 +1,8 @@
+/* Hide material-symbols-outlined icons until font is loaded */
+.material-symbols-outlined {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.material-symbols-outlined.font-loaded {
+  opacity: 1;
+}

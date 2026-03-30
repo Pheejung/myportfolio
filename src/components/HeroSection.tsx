@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection: React.FC = () => {
+  const [fontLoaded, setFontLoaded] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLSpanElement>(null);
@@ -11,6 +12,13 @@ const HeroSection: React.FC = () => {
   const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
+    if (document.fonts) {
+      document.fonts.load('1em "Material Symbols Outlined"').then(() => {
+        setFontLoaded(true);
+      });
+    } else {
+      setFontLoaded(true); // fallback for browsers without document.fonts
+    }
     if (!sectionRef.current) return;
     // Heading animation
     if (headingRef.current) {
@@ -131,13 +139,18 @@ const HeroSection: React.FC = () => {
                 className="w-56 h-56 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 shadow-lg hover:scale-[1.08] hover:shadow-2xl hover:rotate-3 transition-all duration-300 group flex flex-col items-center justify-center text-center mx-auto border-4 border-white"
               >
                 <span className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full mb-3 bg-white border-4 border-pink-200 shadow-md group-hover:animate-bounce">
-                  <span className="material-symbols-outlined text-transparent bg-gradient-to-br from-pink-400 to-purple-400 bg-clip-text text-4xl md:text-5xl group-hover:scale-110 transition-transform">
-                    {icon === 'speed'
-                      ? 'diversity_3'
-                      : icon === 'architecture'
-                        ? 'schema'
-                        : 'groups_3'}
-                  </span>
+                  {fontLoaded && (
+                    <span
+                      translate="no"
+                      className="notranslate material-symbols-outlined text-transparent bg-gradient-to-br from-pink-400 to-purple-400 bg-clip-text text-4xl md:text-5xl group-hover:scale-110 transition-transform"
+                    >
+                      {icon === 'speed'
+                        ? 'diversity_3'
+                        : icon === 'architecture'
+                          ? 'schema'
+                          : 'groups_3'}
+                    </span>
+                  )}
                 </span>
                 <h3 className="font-black text-sm md:text-lg mb-2 text-gray-800 drop-shadow-sm px-2">
                   {icon === 'speed'
