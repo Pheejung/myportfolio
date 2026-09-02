@@ -1,70 +1,45 @@
-
-import React, { useState, useMemo } from 'react';
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { ImpactProject } from '../types';
-import { getIcon } from '../constants';
 
 interface ImpactCardProps {
   project: ImpactProject;
-  color?: 'red';
 }
 
-const ImpactCard: React.FC<ImpactCardProps> = ({ project, color = 'red' }) => {
-  const c = {
-    border: 'border-pink-200',
-    icon: 'text-pink-300',
-    impactLabel: 'text-purple-500',
-    impactValue: 'text-purple-600',
-    tag: 'bg-gradient-to-r from-pink-100 to-purple-100 text-gray-800 border-pink-200',
-    title: 'text-gray-800',
-    category: 'text-gray-400',
-    problem: 'text-gray-700',
-    solution: 'text-gray-600',
-  };
-  // 랜덤 색상 클래스 목록 - 더 귀여운 파스텔톤으로
-  const hoverColors = [
-    'hover:bg-pink-50',
-    'hover:bg-rose-50',
-    'hover:bg-orange-50',
-    'hover:bg-amber-50',
-    'hover:bg-yellow-50',
-    'hover:bg-lime-50',
-    'hover:bg-green-50',
-    'hover:bg-emerald-50',
-    'hover:bg-teal-50',
-    'hover:bg-cyan-50',
-    'hover:bg-sky-50',
-    'hover:bg-blue-50',
-    'hover:bg-indigo-50',
-    'hover:bg-violet-50',
-    'hover:bg-purple-50',
-    'hover:bg-fuchsia-50',
-  ];
-  // 카드별로 고정된 랜덤 색상 부여
-  const [hoverIdx] = useState(() => Math.floor(Math.random() * hoverColors.length));
-  const hoverClass = useMemo(() => hoverColors[hoverIdx], [hoverIdx]);
-
+const ImpactCard: React.FC<ImpactCardProps> = ({ project }) => {
   return (
-    <div className={`bg-white p-8 rounded-3xl border-2 ${c.border} shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ${hoverClass}`}>
-      <h3 className={`text-2xl font-bold mb-6 ${c.title}`}>{project.title}</h3>
-      <div className="space-y-4 mb-8">
+    <article className="group flex h-full min-h-[360px] flex-col border border-[#eadfd9] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#efb5aa] hover:shadow-[0_18px_50px_rgba(180,108,92,0.09)] md:p-8">
+      <div className="flex items-start justify-between gap-6">
         <div>
-          <p className={`text-[10px] font-black uppercase tracking-widest mb-1.5 ${c.category}`}>{project.category}</p>
-          <p className={`text-sm leading-relaxed font-medium ${c.problem}`}>
-            {project.subject}
-          </p>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#e9685a]">{project.category}</p>
+          {project.period && <p className="mt-2 text-xs font-medium text-slate-400">{project.period}</p>}
         </div>
-        <div>
-          <p className={`text-[10px] font-black uppercase tracking-widest mb-1.5 ${c.category}`}></p>
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#eadfd9] text-slate-400 transition group-hover:border-[#f2c5bc] group-hover:bg-[#fff0eb] group-hover:text-[#e9685a]">
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
+      </div>
+
+      <h3 className="mt-8 text-lg font-bold leading-[1.65] tracking-[-0.02em] text-slate-800 md:text-xl">
+        {project.title}
+      </h3>
+      <p className="mt-4 text-sm font-medium leading-6 text-slate-500">{project.subject}</p>
+
+      <div className="mt-auto pt-8">
+        {project.impact && (
+          <div className="mb-6 border-l-2 border-[#ef6f61] pl-3">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">Outcome</p>
+            <p className="mt-1 text-sm font-bold text-slate-800">{project.impact}</p>
+          </div>
+        )}
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span key={tag} className="rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-semibold text-slate-600">
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
-      <div className="flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <span key={tag} className={`px-3 py-1 text-[10px] font-black rounded-full tracking-wide border border-red-400 ${c.tag}`}>
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
+    </article>
   );
 };
 

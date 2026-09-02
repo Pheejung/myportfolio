@@ -7,11 +7,7 @@ interface LayoutSidebarProps {
 }
 
 const LayoutSidebar: React.FC<LayoutSidebarProps> = ({ selectedCompany, setSelectedCompany }) => {
-  return (
-    <aside>
-      <Sidebar selectedCompany={selectedCompany} setSelectedCompany={setSelectedCompany} />
-    </aside>
-  );
+  return <Sidebar selectedCompany={selectedCompany} setSelectedCompany={setSelectedCompany} />;
 };
 
 export default LayoutSidebar;

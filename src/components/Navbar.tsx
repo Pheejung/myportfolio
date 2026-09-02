@@ -1,164 +1,93 @@
 import React, { useEffect, useState } from 'react';
+import { ROUTE_META, RoutePath } from '../router';
 
-const Navbar: React.FC = () => {
-  // 스크롤 스무스 이동 함수
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    id: string,
-  ) => {
-    e.preventDefault();
-    setMobileMenuOpen(false); // 모바일 메뉴 닫기
-    const el = document.getElementById(id);
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 90; // 헤더 높이만큼 보정
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
+interface NavbarProps {
+  currentRoute: RoutePath;
+}
 
-  // active 메뉴 상태
-  const [activeSection, setActiveSection] = useState('about');
+const NAV_ITEMS = (Object.entries(ROUTE_META) as [RoutePath, (typeof ROUTE_META)[RoutePath]][]).map(
+  ([path, meta]) => ({ path, label: meta.label }),
+);
+
+const Navbar: React.FC<NavbarProps> = ({ currentRoute }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sectionIds = ['about', 'skill', 'experience', 'education'];
-    const handleScroll = () => {
-      let found = false;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(sectionIds[i]);
-            found = true;
-            break;
-          }
-        }
-      }
-      if (!found) setActiveSection('about');
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    setMobileMenuOpen(false);
+  }, [currentRoute]);
+
+  const handleSamePageClick = (path: RoutePath) => {
+    setMobileMenuOpen(false);
+    if (path === currentRoute) window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 bg-pink-50/90 backdrop-blur-md border-b-2 border-pink-100 px-6 py-4 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-300 to-purple-300 flex items-center justify-center shadow-md">
-            <span className="text-white text-xl font-black">P</span>
-          </div>
-          <span className="font-black text-base sm:text-xl tracking-tight bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">PARK HEE JUNG</span>
-        </div>
-        
-        {/* 데스크톱 메뉴 */}
-        <div className="hidden md:flex items-center gap-4 text-sm font-semibold">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-[#eee3dd]/90 bg-[#fffdfb]/88 backdrop-blur-xl">
+        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 md:px-10 lg:px-16">
           <a
-            href="#about"
-            className={
-              `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
-              (activeSection === 'about'
-                ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
-                : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
-            }
-            onClick={e => handleNavClick(e, 'about')}
-          >About</a>
-          <a
-            href="#skill"
-            className={
-              `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
-              (activeSection === 'skill'
-                ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
-                : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
-            }
-            onClick={e => handleNavClick(e, 'skill')}
-          >Skill</a>
-          <a
-            href="#experience"
-            className={
-              `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
-              (activeSection === 'experience'
-                ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
-                : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
-            }
-            onClick={e => handleNavClick(e, 'experience')}
-          >Experience</a>
-          <a
-            href="#education"
-            className={
-              `transition-all px-5 py-2.5 rounded-full font-bold shadow-sm ` +
-              (activeSection === 'education'
-                ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105 shadow-md'
-                : 'bg-white text-gray-600 hover:text-pink-500 hover:shadow-md hover:scale-105')
-            }
-            onClick={e => handleNavClick(e, 'education')}
-          >Education</a>
-        </div>
+            href="#/"
+            onClick={() => handleSamePageClick('/')}
+            className="group flex items-center gap-3 text-left"
+            aria-label="홈으로 이동"
+          >
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ef6f61] text-xs font-bold text-white shadow-sm transition-colors group-hover:bg-[#df5c4e]">
+              PH
+            </span>
+            <span>
+              <strong className="block text-sm font-bold tracking-tight text-slate-800">Park Hee Jung</strong>
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Frontend Developer</span>
+            </span>
+          </a>
 
-        {/* 모바일 햄버거 버튼 */}
-        <button 
-          className="md:hidden w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:scale-105 transition-all"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="메뉴"
-        >
-          <svg className="w-6 h-6 text-pink-500" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-            {mobileMenuOpen ? (
-              <path d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+          <div className="hidden items-center gap-1 md:flex">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.path}
+                href={`#${item.path}`}
+                onClick={() => handleSamePageClick(item.path)}
+                aria-current={currentRoute === item.path ? 'page' : undefined}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  currentRoute === item.path
+                    ? 'bg-[#ffebe6] text-[#d95749]'
+                    : 'text-slate-500 hover:bg-white hover:text-slate-800'
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white md:hidden"
+            onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+          >
+            <span className="relative h-4 w-4">
+              <span className={`absolute left-0 top-1 h-px w-4 bg-slate-900 transition ${mobileMenuOpen ? 'translate-y-1 rotate-45' : ''}`} />
+              <span className={`absolute bottom-1 left-0 h-px w-4 bg-slate-900 transition ${mobileMenuOpen ? '-translate-y-1 -rotate-45' : ''}`} />
+            </span>
+          </button>
+        </div>
       </nav>
 
-      {/* 모바일 메뉴 */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <div className="fixed top-20 right-4 left-4 bg-white rounded-3xl shadow-2xl border-2 border-pink-200 p-6 animate-slideDown">
-            <div className="flex flex-col gap-3">
-              <a
-                href="#about"
-                className={
-                  `transition-all px-5 py-3 rounded-full font-bold shadow-sm text-center ` +
-                  (activeSection === 'about'
-                    ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white shadow-md'
-                    : 'bg-pink-50 text-gray-700')
-                }
-                onClick={e => handleNavClick(e, 'about')}
-              >About</a>
-              <a
-                href="#skill"
-                className={
-                  `transition-all px-5 py-3 rounded-full font-bold shadow-sm text-center ` +
-                  (activeSection === 'skill'
-                    ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white shadow-md'
-                    : 'bg-pink-50 text-gray-700')
-                }
-                onClick={e => handleNavClick(e, 'skill')}
-              >Skill</a>
-              <a
-                href="#experience"
-                className={
-                  `transition-all px-5 py-3 rounded-full font-bold shadow-sm text-center ` +
-                  (activeSection === 'experience'
-                    ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white shadow-md'
-                    : 'bg-pink-50 text-gray-700')
-                }
-                onClick={e => handleNavClick(e, 'experience')}
-              >Experience</a>
-              <a
-                href="#education"
-                className={
-                  `transition-all px-5 py-3 rounded-full font-bold shadow-sm text-center ` +
-                  (activeSection === 'education'
-                    ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white shadow-md'
-                    : 'bg-pink-50 text-gray-700')
-                }
-                onClick={e => handleNavClick(e, 'education')}
-              >Education</a>
-            </div>
-          </div>
+        <div className="fixed inset-x-4 top-20 z-40 rounded-2xl border border-slate-200 bg-white p-3 shadow-2xl md:hidden">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.path}
+              href={`#${item.path}`}
+              onClick={() => handleSamePageClick(item.path)}
+              aria-current={currentRoute === item.path ? 'page' : undefined}
+              className={`block rounded-xl px-4 py-3 text-sm font-semibold ${
+                currentRoute === item.path ? 'bg-[#ffebe6] text-[#d95749]' : 'text-slate-600'
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
       )}
     </>

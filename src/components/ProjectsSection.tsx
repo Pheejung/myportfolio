@@ -1,275 +1,111 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-import {
-  VERTIGO_PROJECTS,
-  O2OZ_PROJECTS,
-  SECONDARY_PROJECTS,
-} from '../constants';
+import { O2OZ_PROJECTS, VERTIGO_PROJECTS } from '../constants';
+import { ImpactProject } from '../types';
 import ImpactCard from './ImpactCard';
 import LayoutSidebar from './LayoutSidebar';
 import ProjectModal from './ProjectModal';
 
+gsap.registerPlugin(ScrollTrigger);
+
+const COMPANIES = ['버티고우게임즈', '오투오즈'];
+
 const ProjectsSection: React.FC = () => {
-  // Refs for headings and cards
-  const [modalProject, setModalProject] = React.useState(null);
-  const [selectedCompany, setSelectedCompany] =
-    React.useState('버티고우게임즈');
-  const mainHeadingRef = useRef<HTMLHeadingElement>(null);
-  const heroDescRef = useRef<HTMLParagraphElement>(null);
-  const sidebarRef = useRef<HTMLDivElement>(null);
-  const vertigoHeadingRef = useRef<HTMLHeadingElement>(null);
-  const o2ozHeadingRef = useRef<HTMLHeadingElement>(null);
-  const vertigoCardsRef = useRef<Array<HTMLDivElement | null>>([]);
-  const o2ozCardsRef = useRef<Array<HTMLDivElement | null>>([]);
-  const secondaryCardsRef = useRef<Array<HTMLDivElement | null>>([]);
+  const [modalProject, setModalProject] = useState<ImpactProject | null>(null);
+  const [selectedCompany, setSelectedCompany] = useState('버티고우게임즈');
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const projects = selectedCompany === '버티고우게임즈' ? VERTIGO_PROJECTS : O2OZ_PROJECTS;
 
   useEffect(() => {
-    // Sidebar animation
-    if (sidebarRef.current) {
-      gsap.fromTo(
-        sidebarRef.current,
-        { x: -40, autoAlpha: 0 },
-        {
-          x: 0,
-          autoAlpha: 1,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sidebarRef.current,
-            start: 'top 95%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
+    if (!sectionRef.current) return;
+
+    const context = gsap.context(() => {
+      gsap.from('[data-project-card]', {
+        y: 24,
+        autoAlpha: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 70%',
+          once: true,
         },
-      );
-    }
-    // Hero description animation
-    if (heroDescRef.current) {
-      gsap.fromTo(
-        heroDescRef.current,
-        { y: 30, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          delay: 0.2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: heroDescRef.current,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        },
-      );
-    }
-    // Main heading
-    if (mainHeadingRef.current) {
-      gsap.fromTo(
-        mainHeadingRef.current,
-        { y: 40, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: mainHeadingRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        },
-      );
-    }
-    // Vertigo heading
-    if (vertigoHeadingRef.current) {
-      gsap.fromTo(
-        vertigoHeadingRef.current,
-        { y: 30, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: vertigoHeadingRef.current,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        },
-      );
-    }
-    // O2OZ heading
-    if (o2ozHeadingRef.current) {
-      gsap.fromTo(
-        o2ozHeadingRef.current,
-        { y: 30, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: o2ozHeadingRef.current,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        },
-      );
-    }
-    // Vertigo cards
-    vertigoCardsRef.current.forEach((card, i) => {
-      if (card) {
-        gsap.fromTo(
-          card,
-          { y: 40, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.7,
-            delay: i * 0.12,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 95%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          },
-        );
-      }
-    });
-    // O2OZ cards
-    o2ozCardsRef.current.forEach((card, i) => {
-      if (card) {
-        gsap.fromTo(
-          card,
-          { y: 40, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.7,
-            delay: i * 0.12,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 95%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          },
-        );
-      }
-    });
-    // Secondary cards
-    secondaryCardsRef.current.forEach((card, i) => {
-      if (card) {
-        gsap.fromTo(
-          card,
-          { y: 40, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.7,
-            delay: i * 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 98%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          },
-        );
-      }
-    });
-  }, []);
+      });
+    }, sectionRef);
+
+    return () => context.revert();
+  }, [selectedCompany]);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 flex flex-col lg:flex-row lg:gap-16">
-      {/* 모바일/태블릿: 상단 탭 */}
-      <div className="flex gap-2 mb-6 lg:hidden">
-        {['버티고우게임즈', '오투오즈'].map((company) => (
-          <button
-            key={company}
-            className={`px-4 py-2 rounded-full font-bold text-sm transition-colors border ${selectedCompany === company ? 'bg-red-100 text-red-600 border-red-300' : 'bg-white text-gray-500 border-gray-200'}`}
-            onClick={() => setSelectedCompany(company)}
-          >
-            {company}
-          </button>
-        ))}
-      </div>
-      {/* Sidebar: sticky on large screens */}
-      <aside
-        ref={sidebarRef}
-        className="hidden lg:block w-64 shrink-0 sticky top-32 self-start"
-      >
-        <LayoutSidebar
-          selectedCompany={selectedCompany}
-          setSelectedCompany={setSelectedCompany}
-        />
-      </aside>
-      {/* Main content */}
-      <main className="flex-1 space-y-24">
-        {/* Hero Header */}
-        <section id="experience">
-          <h1
-            ref={mainHeadingRef}
-            className="text-4xl md:text-[2.8rem] font-black text-gray-900 leading-[1.1] mb-6 tracking-tight"
-          >
-            Work Experience
-          </h1>
-          <p
-            ref={heroDescRef}
-            className="text-lg text-gray-500 max-w-3xl font-medium leading-relaxed"
-          >
-            다양한 규모의 서비스에서 기술적 리더십과 비즈니스 가치를 만들어낸
-            프로젝트 경험을 소개합니다.
-          </p>
-        </section>
-
-        {/* Section: 회사별 프로젝트 카드형 */}
-        <section>
-          <div className="flex items-center gap-4 mb-10">
-            <div className="h-1 w-12 rounded-full bg-red-300" />
-            <h2 className="text-3xl font-black tracking-tight text-red-600">
-              {selectedCompany}
+    <section id="experience" ref={sectionRef} className="border-b border-[#eee3dd] bg-[#fff9f6] px-6 py-24 md:px-10 md:py-32 lg:px-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="border-b border-slate-300 pb-14">
+          <div>
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-[#e9685a]">02 / Work Experience</p>
+            <h2 className="max-w-5xl text-[1.75rem] font-extrabold leading-[1.45] tracking-[-0.035em] text-slate-800 sm:text-4xl md:text-[2.75rem] lg:text-5xl">
+              <span className="block">실제 운영 환경에서</span>
+              <span className="mt-3 block text-[#e9685a] md:mt-4">비즈니스 가치를 만들었습니다.</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {(selectedCompany === '버티고우게임즈'
-              ? VERTIGO_PROJECTS
-              : selectedCompany === '오투오즈'
-                ? O2OZ_PROJECTS
-                : []
-            ).map((project, i) => (
-              <div
-                key={project.id}
-                ref={(el) => (vertigoCardsRef.current[i] = el)}
-              >
-                <div
-                  onClick={() => setModalProject(project)}
-                  className="cursor-pointer"
-                >
-                  <ImpactCard project={project} color="red" />
-                </div>
+          <p className="mt-6 max-w-3xl text-base font-bold leading-7 text-slate-600 md:text-lg md:leading-8">
+            신규 서비스 런칭, 레거시 환경 대응, 디자인 시스템 구축까지 제품의 시작과 운영 전반을 경험했습니다.
+          </p>
+        </div>
+
+        <div className="mt-12 flex gap-2 overflow-x-auto lg:hidden">
+          {COMPANIES.map((company) => (
+            <button
+              key={company}
+              type="button"
+              onClick={() => setSelectedCompany(company)}
+              className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold ${
+                selectedCompany === company ? 'bg-[#ffebe6] text-[#d95749]' : 'border border-[#e6d9d3] bg-white text-slate-500'
+              }`}
+            >
+              {company}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-col gap-12 lg:flex-row lg:gap-16">
+          <aside className="hidden w-64 shrink-0 lg:block">
+            <div className="sticky top-28">
+              <LayoutSidebar selectedCompany={selectedCompany} setSelectedCompany={setSelectedCompany} />
+            </div>
+          </aside>
+
+          <div className="min-w-0 flex-1">
+            <div className="mb-8 flex items-end justify-between border-b border-slate-300 pb-5">
+              <div>
+                <p className="text-xs font-semibold text-slate-400">Selected company</p>
+                <h3 className="mt-1 text-xl font-bold tracking-tight text-slate-800">{selectedCompany}</h3>
               </div>
-            ))}
+              <span className="text-sm font-semibold text-slate-400">{String(projects.length).padStart(2, '0')} Projects</span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              {projects.map((project) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  data-project-card
+                  onClick={() => setModalProject(project)}
+                  className="text-left"
+                  aria-label={`${project.title} 상세보기`}
+                >
+                  <ImpactCard project={project} />
+                </button>
+              ))}
+            </div>
           </div>
-        </section>
-      </main>
-      {modalProject && (
-        <ProjectModal
-          project={modalProject}
-          onClose={() => setModalProject(null)}
-        />
-      )}
-    </div>
+        </div>
+      </div>
+
+      {modalProject && <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />}
+    </section>
   );
 };
 

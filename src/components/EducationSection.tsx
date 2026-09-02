@@ -1,81 +1,25 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
 import { EDUCATION } from '../constants';
 
 const EducationSection: React.FC = () => {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const eduRefs = useRef<Array<HTMLDivElement | null>>([]);
-
-  useEffect(() => {
-    if (headingRef.current) {
-      gsap.fromTo(
-        headingRef.current,
-        { y: 40, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        },
-      );
-    }
-    eduRefs.current.forEach((block, i) => {
-      if (block) {
-        gsap.fromTo(
-          block,
-          { y: 40, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.7,
-            delay: i * 0.12,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: block,
-              start: 'top 95%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          },
-        );
-      }
-    });
-  }, []);
-
   return (
-    <section className="mb-20">
-      <h2 ref={headingRef} className="text-4xl font-black mb-12 tracking-tight">
-        Education
-      </h2>
-      <div className="space-y-12">
-        {EDUCATION.map((edu, i) => (
-          <div
-            key={edu.degree}
-            ref={(el) => (eduRefs.current[i] = el)}
-            className="relative pl-8 group"
-          >
-            <div
-              className={`absolute left-0 top-1 w-3 h-3 rounded-full ${edu.active ? 'bg-primary' : 'bg-gray-200'} group-hover:scale-125 transition-transform`}
-            ></div>
-            <div
-              className={`absolute left-[5.5px] top-4 w-[1px] h-full bg-gray-100 last:hidden`}
-            ></div>
-            <h4 className="text-xl font-bold mb-1">{edu.degree}</h4>
-            <p className="text-primary font-bold text-sm mb-2">
-              {edu.institution}
-            </p>
-            <p className="text-sm text-gray-500 font-medium">
-              {edu.description}
-            </p>
-          </div>
+    <section>
+      <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-[#e9685a]">03 / Background</p>
+      <h2 className="text-2xl font-extrabold leading-[1.65] tracking-[-0.035em] text-slate-800 md:text-3xl">Education</h2>
+
+      <div className="mt-10 border-t border-slate-300">
+        {EDUCATION.map((education, index) => (
+          <article key={education.degree} className="grid gap-3 border-b border-slate-200 py-6 sm:grid-cols-[2rem_1fr]">
+            <span className="text-xs font-bold text-slate-300">{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 className="text-base font-bold leading-snug text-slate-900">{education.degree}</h3>
+              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                <span className="font-semibold text-[#d95749]">{education.institution}</span>
+                <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
+                <span className="font-medium text-slate-400">{education.description}</span>
+              </div>
+            </div>
+          </article>
         ))}
       </div>
     </section>

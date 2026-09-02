@@ -1,8 +1,52 @@
-/* Hide material-symbols-outlined icons until font is loaded */
-.material-symbols-outlined {
-  opacity: 0;
-  transition: opacity 0.2s;
+html {
+  background: #fffdfb;
 }
-.material-symbols-outlined.font-loaded {
-  opacity: 1;
+
+body {
+  margin: 0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(121, 86, 73, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(121, 86, 73, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+}
+
+.page-enter {
+  animation: page-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

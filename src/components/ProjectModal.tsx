@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { ExternalLink, X } from 'lucide-react';
 import { ImpactProject } from '../types';
 
 interface ProjectModalProps {
@@ -7,92 +9,114 @@ interface ProjectModalProps {
 }
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // ESC 키로 닫기
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
     };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
-
-  // 외부 클릭 시 닫기
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        onClose();
-      }
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
     };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
   }, [onClose]);
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div ref={modalRef} className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-10 relative animate-fadeIn">
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl font-bold"
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <div className="mb-6">
-          <h2 className="text-2xl font-black text-black-500 mb-2">{project.title}</h2>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 mb-2">
-            {project.period && (
-              <span className="text-xs text-gray-400 font-semibold">{project.period}</span>
-            )}
-            {(project.period && (project.id.startsWith('v') || project.id.startsWith('o'))) && (
-              <span className="mx-1 text-gray-300 font-bold">|</span>
-            )}
-            {project.id.startsWith('v') && (
-              <span className="text-xs text-black font-bold">Frontend Developer</span>
-            )}
-            {project.id.startsWith('o') && (
-              <span className="text-xs text-black font-bold">FullStack Developer</span>
-            )}
+  const role = project.id.startsWith('v') ? 'Frontend Developer' : 'FullStack Developer';
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-700/35 p-4 backdrop-blur-sm md:p-8"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto bg-white shadow-2xl"
+      >
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white/95 px-6 py-4 backdrop-blur md:px-10">
+          <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#e9685a]">Project Detail</span>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            onClick={onClose}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-slate-400 hover:text-slate-950"
+            aria-label="프로젝트 상세 닫기"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="px-6 py-8 md:px-10 md:py-10">
+          <p className="text-sm font-semibold text-slate-400">{project.period}</p>
+          <h2 id="project-modal-title" className="mt-4 text-xl font-extrabold leading-[1.65] tracking-[-0.03em] text-slate-800 md:text-3xl">
+            {project.title}
+          </h2>
+          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+            <span className="font-bold text-slate-800">{role}</span>
+            <span className="h-1 w-1 rounded-full bg-slate-300" />
+            <span className="font-medium text-slate-500">{project.category}</span>
           </div>
-          <p className="text-sm text-gray-500 mb-2">{project.category}</p>
-          <div className="flex flex-wrap gap-2 mb-2">
+
+          <div className="mt-8 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
-              <span key={tag} className="px-3 py-1 bg-white text-[10px] font-black text-black rounded-full tracking-wide border border-red-400">
+              <span key={tag} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
                 {tag}
               </span>
             ))}
           </div>
+
           {project.link && (
-            <div className="mb-2">
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 bg-primary/10 text-primary font-semibold rounded hover:bg-primary/20 transition">
-                프로젝트 바로가기 ↗
-              </a>
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#d95749] hover:text-[#bf483c]"
+            >
+              프로젝트 바로가기
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
+
+          <div className="mt-10 grid gap-8 border-t border-slate-200 pt-8 md:grid-cols-[160px_1fr]">
+            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Overview</h3>
+            <p className="text-sm font-medium leading-7 text-slate-700">{project.subject}</p>
+          </div>
+
+          {project.impact && (
+            <div className="mt-8 grid gap-4 border-t border-slate-200 pt-8 md:grid-cols-[160px_1fr]">
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Outcome</h3>
+              <p className="border-l-2 border-[#ef6f61] pl-4 text-base font-bold text-slate-800">{project.impact}</p>
+            </div>
+          )}
+
+          {project.details && project.details.length > 0 && (
+            <div className="mt-8 grid gap-6 border-t border-slate-200 pt-8 md:grid-cols-[160px_1fr]">
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Contribution</h3>
+              <ul className="space-y-4">
+                {project.details.map((item, index) => (
+                  <li key={index} className="flex gap-3 text-sm font-medium leading-6 text-slate-700">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ef6f61]" />
+                    <span>
+                      {typeof item === 'string' ? item : item.type === 'strong' ? <strong>{item.text}</strong> : null}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
-        <div className="mb-4">
-          <p className="text-xs font-bold text-gray-400 uppercase mb-1">프로젝트 설명</p>
-          <p className="text-sm text-gray-700 leading-relaxed">{project.subject}</p>
-        </div>
-        {Array.isArray(project.details) && project.details.length > 0 && (
-          <div className="mb-2">
-            <p className="text-xs font-bold text-gray-400 uppercase mb-1">주요 업무</p>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
-              {project.details.map((item, idx) => (
-                <li key={idx}>
-                  {typeof item === 'string'
-                    ? item
-                    : item.type === 'strong'
-                      ? <strong>{item.text}</strong>
-                      : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
 
