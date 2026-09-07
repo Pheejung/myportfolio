@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentRoute }) => {
 
   return (
     <>
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-[#eee3dd]/90 bg-[#fffdfb]/88 backdrop-blur-xl">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-[#eee3dd]/90 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 md:px-10 lg:px-16">
           <a
             href="#/"

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { O2OZ_PROJECTS, VERTIGO_PROJECTS } from '../constants';
+import { EXPERIENCES, O2OZ_PROJECTS, VERTIGO_PROJECTS } from '../constants';
 import { ImpactProject } from '../types';
 import ImpactCard from './ImpactCard';
 import LayoutSidebar from './LayoutSidebar';
@@ -11,12 +11,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const COMPANIES = ['버티고우게임즈', '오투오즈'];
 
+const COMPANY_SUMMARIES: Record<string, string> = {
+  버티고우게임즈:
+    '글로벌 게임 서비스의 이벤트·프로모션 웹부터 런칭 사이트와 백오피스까지 구축하고 운영했습니다.',
+  오투오즈:
+    'SI 환경에서 웹·모바일 프로젝트를 수행하며 구조 설계, 인증·결제, 데이터 시각화와 외부 API 연동을 담당했습니다.',
+};
+
 const ProjectsSection: React.FC = () => {
   const [modalProject, setModalProject] = useState<ImpactProject | null>(null);
   const [selectedCompany, setSelectedCompany] = useState('버티고우게임즈');
   const sectionRef = useRef<HTMLElement>(null);
 
   const projects = selectedCompany === '버티고우게임즈' ? VERTIGO_PROJECTS : O2OZ_PROJECTS;
+  const selectedExperience = EXPERIENCES.find((experience) => experience.company === selectedCompany);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -40,7 +48,7 @@ const ProjectsSection: React.FC = () => {
   }, [selectedCompany]);
 
   return (
-    <section id="experience" ref={sectionRef} className="border-b border-[#eee3dd] bg-[#fff9f6] px-6 py-24 md:px-10 md:py-32 lg:px-16">
+    <section id="experience" ref={sectionRef} className="border-b border-[#eee3dd] bg-white px-6 py-24 md:px-10 md:py-32 lg:px-16">
       <div className="mx-auto max-w-7xl">
         <div className="border-b border-slate-300 pb-14">
           <div>
@@ -50,8 +58,8 @@ const ProjectsSection: React.FC = () => {
               <span className="mt-3 block text-[#e9685a] md:mt-4">비즈니스 가치를 만들었습니다.</span>
             </h2>
           </div>
-          <p className="mt-6 max-w-3xl text-base font-bold leading-7 text-slate-600 md:text-lg md:leading-8">
-            신규 서비스 런칭, 레거시 환경 대응, 디자인 시스템 구축까지 제품의 시작과 운영 전반을 경험했습니다.
+          <p className="mt-6 max-w-5xl text-base font-bold leading-7 text-slate-600 md:text-lg md:leading-8">
+            신규 서비스 런칭, 레거시 환경 대응, 디자인 시스템 구축까지 프로젝트의 시작과 운영 전반을 경험했습니다.
           </p>
         </div>
 
@@ -78,12 +86,22 @@ const ProjectsSection: React.FC = () => {
           </aside>
 
           <div className="min-w-0 flex-1">
-            <div className="mb-8 flex items-end justify-between border-b border-slate-300 pb-5">
-              <div>
-                <p className="text-xs font-semibold text-slate-400">Selected company</p>
-                <h3 className="mt-1 text-xl font-bold tracking-tight text-slate-800">{selectedCompany}</h3>
+            <div className="mb-8 border-b border-slate-300 pb-6">
+              <div className="flex items-end justify-between gap-6">
+                <div>
+                  <p className="text-xs font-semibold text-slate-400">Selected company</p>
+                  <h3 className="mt-1 text-xl font-bold tracking-tight text-slate-800">{selectedCompany}</h3>
+                  {selectedExperience && (
+                    <p className="mt-2 text-xs font-semibold text-[#d95749]">
+                      {selectedExperience.role} · {selectedExperience.period}
+                    </p>
+                  )}
+                </div>
+                <span className="text-sm font-semibold text-slate-400">{String(projects.length).padStart(2, '0')} Projects</span>
               </div>
-              <span className="text-sm font-semibold text-slate-400">{String(projects.length).padStart(2, '0')} Projects</span>
+              <p className="mt-5 max-w-3xl text-sm font-medium leading-6 text-slate-600">
+                {COMPANY_SUMMARIES[selectedCompany]}
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">

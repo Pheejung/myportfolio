@@ -8,7 +8,7 @@ const LINKS = [
 
 const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="border-t border-[#f1dcd5] bg-[#fff1ec] px-6 py-14 text-slate-800 md:px-10 lg:px-16">
+    <footer id="contact" className="border-t border-[#eee3dd] bg-white px-6 py-14 text-slate-800 md:px-10 lg:px-16">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 text-xs font-semibold text-slate-500 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Park Hee Jung. All rights reserved.</p>

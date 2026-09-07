@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCompany, setSelectedCompany }
               onClick={() => setSelectedCompany(experience.company)}
               className="group relative block w-full py-1 pb-8 pl-6 text-left last:pb-2"
             >
-              <span className={`absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border-2 border-[#fff9f6] transition-colors ${isActive ? 'bg-[#ef6f61]' : 'bg-slate-300 group-hover:bg-slate-400'}`} />
+              <span className={`absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white transition-colors ${isActive ? 'bg-[#ef6f61]' : 'bg-slate-300 group-hover:bg-slate-400'}`} />
               <span className={`block text-sm font-bold transition-colors ${isActive ? 'text-[#d95749]' : 'text-slate-700'}`}>
                 {experience.company}
               </span>

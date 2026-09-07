@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const CurrentPage = PAGES[route];
 
   return (
-    <div className="min-h-screen bg-[#fffdfb] font-sans text-slate-800 antialiased">
+    <div className="min-h-screen bg-white font-sans text-slate-800 antialiased">
       <Navbar currentRoute={route} />
       <main key={route} className="page-enter">
         <CurrentPage />

@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 const EXPERTISE = [
   {
     number: '01',
-    title: 'Product-minded',
+    title: 'Project Ownership',
     description: '요구사항을 화면 구현에 그치지 않고 사용자와 운영 관점의 문제로 해석합니다.',
   },
   {
@@ -16,7 +16,7 @@ const EXPERTISE = [
   {
     number: '03',
     title: 'Reliable Delivery',
-    description: '런칭부터 운영·개선까지 책임지고 안정적인 제품 경험을 완성합니다.',
+    description: '런칭부터 운영·개선까지 책임지고 프로젝트의 완성도를 높입니다.',
   },
 ];
 
