@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>박희정 포트폴리오</title>
+  <script>
+    (function () {
+      var basePath = '/myportfolio/';
+      var route = window.location.pathname.indexOf(basePath) === 0
+        ? window.location.pathname.slice(basePath.length)
+        : '';
+      var destination = '/' + route + window.location.search + window.location.hash;
+
+      window.location.replace(basePath + '?redirect=' + encodeURIComponent(destination));
+    })();
+  </script>
+</head>
+<body></body>
+</html>
