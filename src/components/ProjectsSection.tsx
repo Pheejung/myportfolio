@@ -48,17 +48,24 @@ const ProjectsSection: React.FC = () => {
   }, [selectedCompany]);
 
   return (
-    <section id="experience" ref={sectionRef} className="border-b border-[#eee3dd] bg-white px-6 py-24 md:px-10 md:py-32 lg:px-16">
+    <section id="career" ref={sectionRef} className="border-b border-[#F3E7DC] bg-white px-6 py-24 md:px-10 md:py-32 lg:px-16">
       <div className="mx-auto max-w-7xl">
-        <div className="border-b border-slate-300 pb-14">
+        <div className="relative overflow-hidden py-2 md:py-4">
+          <div className="absolute left-0 top-0 flex gap-1.5">
+            <span className="h-2.5 w-8 rounded-full bg-[#FF829A]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FFD86B]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#8DD8BC]" />
+          </div>
           <div>
-            <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-[#e9685a]">02 / Work Experience</p>
+            <p className="mb-5 mt-7 text-xs font-bold uppercase tracking-[0.2em] text-[#E94F70]">02 / Career</p>
             <h2 className="max-w-5xl text-[1.75rem] font-extrabold leading-[1.45] tracking-[-0.035em] text-slate-800 sm:text-4xl md:text-[2.75rem] lg:text-5xl">
               <span className="block">실제 운영 환경에서</span>
-              <span className="mt-3 block text-[#e9685a] md:mt-4">비즈니스 가치를 만들었습니다.</span>
+              <span className="mt-3 block bg-gradient-to-r from-[#FF5F7E] to-[#F3985B] bg-clip-text text-transparent md:mt-4">
+                비즈니스 가치를 만들었습니다.
+              </span>
             </h2>
           </div>
-          <p className="mt-6 max-w-5xl text-base font-bold leading-7 text-slate-600 md:text-lg md:leading-8">
+          <p className="mt-6 max-w-5xl text-base font-medium leading-7 text-slate-500 md:text-lg md:leading-8">
             신규 서비스 런칭, 레거시 환경 대응, 디자인 시스템 구축까지 프로젝트의 시작과 운영 전반을 경험했습니다.
           </p>
         </div>
@@ -70,7 +77,9 @@ const ProjectsSection: React.FC = () => {
               type="button"
               onClick={() => setSelectedCompany(company)}
               className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold ${
-                selectedCompany === company ? 'bg-[#ffebe6] text-[#d95749]' : 'border border-[#e6d9d3] bg-white text-slate-500'
+                selectedCompany === company
+                  ? 'bg-[#FF6685] text-white shadow-sm'
+                  : 'border border-[#F1DED8] bg-white text-slate-500'
               }`}
             >
               {company}
@@ -86,13 +95,13 @@ const ProjectsSection: React.FC = () => {
           </aside>
 
           <div className="min-w-0 flex-1">
-            <div className="mb-8 border-b border-slate-300 pb-6">
+            <div className="mb-8 rounded-3xl border border-[#F2E1D2] bg-white p-6 shadow-[0_10px_30px_rgba(112,76,55,0.05)]">
               <div className="flex items-end justify-between gap-6">
                 <div>
                   <p className="text-xs font-semibold text-slate-400">Selected company</p>
                   <h3 className="mt-1 text-xl font-bold tracking-tight text-slate-800">{selectedCompany}</h3>
                   {selectedExperience && (
-                    <p className="mt-2 text-xs font-semibold text-[#d95749]">
+                    <p className="mt-2 text-xs font-semibold text-[#E94F70]">
                       {selectedExperience.role} · {selectedExperience.period}
                     </p>
                   )}

@@ -17,11 +17,7 @@ const ProjectListItem: React.FC<{ project: ImpactProject }> = ({ project }) => {
         </div>
       </div>
       
-      <div className="flex items-center gap-6">
-        <div className="text-right">
-          <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Core Impact</p>
-          <p className="text-sm font-black text-red-500">{project.impact}</p>
-        </div>
+      <div className="flex items-center">
         <ChevronDown className="w-5 h-5 text-gray-200 group-hover:text-red-500 transition-colors" />
       </div>
     </div>

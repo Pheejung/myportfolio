@@ -26,6 +26,13 @@ const SKILLS = [
   { name: 'Azure', icon: 'icons/azure.svg', category: 'env' },
 ];
 
+const SKILL_TONES = [
+  'border-[#FFDDE5] bg-[#FFF7F9] hover:border-[#FFC4D0]',
+  'border-[#F3E4AD] bg-[#FFFCF0] hover:border-[#EED47A]',
+  'border-[#CFEBDD] bg-[#F5FCF8] hover:border-[#A8DCC5]',
+  'border-[#DCE7F5] bg-[#F7FAFE] hover:border-[#BDD3EE]',
+];
+
 const SkillSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('frontend');
   const sectionRef = useRef<HTMLElement>(null);
@@ -64,24 +71,31 @@ const SkillSection: React.FC = () => {
     <section
       id="skill"
       ref={sectionRef}
-      className="min-h-[calc(100vh-72px)] border-b border-[#eee3dd] bg-white px-6 py-24 md:px-10 md:py-32 lg:px-16"
+      className="min-h-[calc(100vh-72px)] border-b border-[#F3E7DC] bg-white px-6 py-24 md:px-10 md:py-32 lg:px-16"
     >
       <div className="mx-auto max-w-7xl">
-        <div>
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-[#e9685a]">
+        <div className="relative overflow-hidden py-2 md:py-4">
+          <div className="absolute left-0 top-0 flex gap-1.5">
+            <span className="h-2.5 w-8 rounded-full bg-[#FF829A]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FFD86B]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#8DD8BC]" />
+          </div>
+          <p className="mb-5 mt-7 text-xs font-bold uppercase tracking-[0.2em] text-[#E94F70]">
             01 / Capabilities
           </p>
           <h1 className="max-w-5xl text-[1.75rem] font-extrabold leading-[1.45] tracking-[-0.035em] text-slate-800 sm:text-4xl md:text-[2.75rem] lg:text-5xl">
             <span className="block">익숙한 기술보다</span>
-            <span className="mt-3 block text-[#e9685a] md:mt-4">적합한 해법을 선택합니다.</span>
+            <span className="mt-3 block bg-gradient-to-r from-[#FF5F7E] to-[#F3985B] bg-clip-text text-transparent md:mt-4">
+              적합한 해법을 선택합니다.
+            </span>
           </h1>
-          <p className="mt-6 max-w-3xl text-base font-bold leading-7 text-slate-600 md:text-lg md:leading-8">
+          <p className="mt-6 max-w-3xl text-base font-semibold leading-7 text-slate-500 md:text-lg md:leading-8">
             프로젝트 규모와 운영 환경을 기준으로 기술을 선택하고, 팀이 오래 유지할 수 있는 구조를 설계합니다.
           </p>
         </div>
 
-        <div className="mt-10 flex justify-center">
-          <div className="flex max-w-full gap-1 overflow-x-auto rounded-full border border-[#f1d2ca] bg-[#fff1ec] p-2 shadow-sm">
+        <div className="mt-12 flex justify-center">
+          <div className="flex max-w-full gap-1 overflow-x-auto rounded-full border border-[#F3E4D8] bg-[#FFF9F0] p-2 shadow-[0_8px_24px_rgba(112,76,55,0.06)]">
             {SKILL_CATEGORIES.map((tab) => (
               <button
                 key={tab.key}
@@ -89,8 +103,8 @@ const SkillSection: React.FC = () => {
                 onClick={() => setActiveTab(tab.key)}
                 className={`whitespace-nowrap rounded-full px-4 py-2.5 text-xs font-bold transition-all sm:px-5 sm:text-sm ${
                   activeTab === tab.key
-                    ? 'bg-white text-[#d95749] shadow-sm'
-                    : 'text-slate-500 hover:bg-white/60 hover:text-slate-700'
+                    ? 'bg-[#FF6685] text-white shadow-[0_4px_12px_rgba(255,102,133,0.22)]'
+                    : 'text-slate-500 hover:bg-white hover:text-[#E94F70]'
                 }`}
               >
                 {tab.label}
@@ -100,12 +114,12 @@ const SkillSection: React.FC = () => {
         </div>
 
         <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 justify-items-center gap-5 sm:grid-cols-5 md:grid-cols-6 md:gap-6">
-          {activeSkills.map((skill) => (
+          {activeSkills.map((skill, index) => (
             <div
               key={skill.name}
               data-skill-item
               style={{ opacity: 0 }}
-              className="flex h-20 w-20 flex-col items-center justify-center rounded-2xl border border-[#f0dcd6] bg-gradient-to-br from-white to-[#fff7f3] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#efb5aa] hover:shadow-[0_10px_24px_rgba(180,108,92,0.12)]"
+              className={`flex h-20 w-20 flex-col items-center justify-center rounded-2xl border shadow-[0_6px_20px_rgba(105,76,55,0.05)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(105,76,55,0.1)] ${SKILL_TONES[index % SKILL_TONES.length]}`}
             >
               <img src={skill.icon} alt="" className="mb-1 h-9 w-9 object-contain" />
               <span className="mt-1 text-[11px] font-bold text-slate-700">{skill.name}</span>

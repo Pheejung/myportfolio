@@ -40,10 +40,10 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
-        className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto bg-white shadow-2xl"
+        className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-[#F1DED7] bg-white shadow-[0_24px_80px_rgba(91,58,45,0.18)]"
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white/95 px-6 py-4 backdrop-blur md:px-10">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#e9685a]">Project Detail</span>
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#F3E7DC] bg-white/95 px-6 py-4 backdrop-blur md:px-10">
+          <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#E94F70]">Project Detail</span>
           <button
             ref={closeButtonRef}
             type="button"
@@ -57,7 +57,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 
         <div className="px-6 py-8 md:px-10 md:py-10">
           <p className="text-sm font-semibold text-slate-400">{project.period}</p>
-          <h2 id="project-modal-title" className="mt-4 text-xl font-extrabold leading-[1.65] tracking-[-0.03em] text-slate-800 md:text-3xl">
+          <h2 id="project-modal-title" className="mt-4 text-lg font-extrabold leading-[1.65] tracking-[-0.03em] text-slate-800 md:text-[1.75rem]">
             {project.title}
           </h2>
           <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
@@ -68,7 +68,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 
           <div className="mt-8 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
-              <span key={tag} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
+              <span key={tag} className="rounded-full border border-[#D7EEE4] bg-[#F0FAF5] px-3 py-1.5 text-xs font-semibold text-[#347A63]">
                 {tag}
               </span>
             ))}
@@ -79,32 +79,25 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#d95749] hover:text-[#bf483c]"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#E94F70] hover:text-[#C93F5E]"
             >
               프로젝트 바로가기
               <ExternalLink className="h-4 w-4" />
             </a>
           )}
 
-          <div className="mt-10 grid gap-8 border-t border-slate-200 pt-8 md:grid-cols-[160px_1fr]">
-            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Overview</h3>
-            <p className="text-sm font-medium leading-7 text-slate-700">{project.subject}</p>
+          <div className="mt-10 grid gap-5 rounded-2xl border border-[#D6EBE1] bg-[#F5FCF8] p-6 md:grid-cols-[140px_1fr] md:gap-8">
+            <h3 className="text-xs font-bold tracking-[0.14em] text-slate-400">프로젝트 개요</h3>
+            <p className="text-sm font-normal leading-7 text-slate-600">{project.subject}</p>
           </div>
 
-          {project.impact && (
-            <div className="mt-8 grid gap-4 border-t border-slate-200 pt-8 md:grid-cols-[160px_1fr]">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Outcome</h3>
-              <p className="border-l-2 border-[#ef6f61] pl-4 text-base font-bold text-slate-800">{project.impact}</p>
-            </div>
-          )}
-
           {project.details && project.details.length > 0 && (
-            <div className="mt-8 grid gap-6 border-t border-slate-200 pt-8 md:grid-cols-[160px_1fr]">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Contribution</h3>
+            <div className="mt-4 grid gap-6 rounded-2xl border border-[#FFDDE5] bg-[#FFF7F9] p-6 md:grid-cols-[140px_1fr] md:gap-8">
+              <h3 className="text-xs font-bold tracking-[0.14em] text-slate-400">주요 기여</h3>
               <ul className="space-y-4">
                 {project.details.map((item, index) => (
-                  <li key={index} className="flex gap-3 text-sm font-medium leading-6 text-slate-700">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ef6f61]" />
+                  <li key={index} className="flex gap-3 text-sm font-normal leading-6 text-slate-600">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6685]" />
                     <span>
                       {typeof item === 'string' ? item : item.type === 'strong' ? <strong>{item.text}</strong> : null}
                     </span>

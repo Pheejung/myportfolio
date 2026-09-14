@@ -25,8 +25,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCompany, setSelectedCompany }
               onClick={() => setSelectedCompany(experience.company)}
               className="group relative block w-full py-1 pb-8 pl-6 text-left last:pb-2"
             >
-              <span className={`absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white transition-colors ${isActive ? 'bg-[#ef6f61]' : 'bg-slate-300 group-hover:bg-slate-400'}`} />
-              <span className={`block text-sm font-bold transition-colors ${isActive ? 'text-[#d95749]' : 'text-slate-700'}`}>
+              <span className={`absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white transition-colors ${isActive ? 'bg-[#FF6685]' : 'bg-slate-300 group-hover:bg-[#FFADBD]'}`} />
+              <span className={`block text-sm font-bold transition-colors ${isActive ? 'text-[#E94F70]' : 'text-slate-700'}`}>
                 {experience.company}
               </span>
               <span className="mt-1 block text-xs font-medium text-slate-500">{experience.role}</span>
@@ -36,11 +36,11 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCompany, setSelectedCompany }
         })}
       </div>
 
-      <div className="mt-10 border-t border-slate-300 pt-6">
+      <div className="mt-10 rounded-2xl border border-[#F1E2B8] bg-white p-5">
         <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Core Stack</p>
         <div className="flex flex-wrap gap-2">
           {techStack.map((tech) => (
-            <span key={tech} className="rounded-full border border-slate-300 px-2.5 py-1 text-[10px] font-semibold text-slate-600">
+            <span key={tech} className="rounded-full border border-[#EBD99D] bg-white/70 px-2.5 py-1 text-[10px] font-semibold text-[#856A17]">
               {tech}
             </span>
           ))}

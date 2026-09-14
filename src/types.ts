@@ -36,7 +36,6 @@ export interface ImpactProject {
   category: string;
   subject?: string;
   link?: string;
-  impact: string;
   problem: string;
   tags: string[];
   iconType: 'network' | 'users' | 'chart' | 'settings' | 'route' | 'grid' | 'scanner';
