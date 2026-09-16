@@ -63,10 +63,10 @@ const HeroSection: React.FC = () => {
         <div>
           <h1
             data-hero-reveal
-            className="max-w-5xl text-[1.75rem] font-extrabold leading-[1.45] tracking-[-0.035em] text-slate-800 sm:text-4xl md:text-[2.75rem] lg:text-5xl"
+            className="max-w-5xl text-[1.75rem] font-extrabold leading-[1.45] tracking-[-0.035em] text-slate-800 max-lg:leading-[2] max-sm:leading-[1.22] sm:text-4xl md:text-[2.75rem] lg:text-5xl"
           >
             <span className="block">안녕하세요!</span>
-            <span className="mt-3 block md:mt-4">
+            <span className="mt-4 block max-lg:mt-3 max-sm:mt-2">
               프론트엔드 개발자{' '}
               <span className="text-[#E94F70]">박희정</span>입니다.
             </span>

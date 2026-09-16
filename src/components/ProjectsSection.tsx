@@ -58,9 +58,9 @@ const ProjectsSection: React.FC = () => {
           </div>
           <div>
             <p className="mb-5 mt-7 text-xs font-bold uppercase tracking-[0.2em] text-[#E94F70]">02 / Career</p>
-            <h2 className="max-w-5xl text-[1.75rem] font-extrabold leading-[1.45] tracking-[-0.035em] text-slate-800 sm:text-4xl md:text-[2.75rem] lg:text-5xl">
+            <h2 className="max-w-5xl text-[1.75rem] font-extrabold leading-[1.45] tracking-[-0.035em] text-slate-800 max-lg:leading-[2] max-sm:leading-[1.22] sm:text-4xl md:text-[2.75rem] lg:text-5xl">
               <span className="block">실제 운영 환경에서</span>
-              <span className="mt-3 block bg-gradient-to-r from-[#FF5F7E] to-[#F3985B] bg-clip-text text-transparent md:mt-4">
+              <span className="mt-4 block bg-gradient-to-r from-[#FF5F7E] to-[#F3985B] bg-clip-text text-transparent max-lg:mt-3 max-sm:mt-2">
                 비즈니스 가치를 만들었습니다.
               </span>
             </h2>
